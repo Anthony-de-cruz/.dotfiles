@@ -48,3 +48,6 @@ require("formatter").setup({
 		},
 	},
 })
+
+vim.keymap.set("n", "<leader>f", "<Cmd>Format<CR>")
+vim.keymap.set("n", "<leader>fw", "<Cmd>FormatWrite<CR>")
