@@ -36,4 +36,7 @@ vim.opt.updatetime = 50
 -- Vertical rule
 vim.opt.colorcolumn = "80"
 
+-- Clipboard
+vim.opt.clipboard = "unnamedplus"
+
 vim.g.mapleader = " "
