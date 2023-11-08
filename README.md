@@ -5,6 +5,8 @@ Some of my .dotfile setup
 ### GIT
 .gitconfig
 
+ln -s ~/.dotfiles/git/.gitconfig ~/.gitconfig
+
 ### ZSH
 .zshrc
 
