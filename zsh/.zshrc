@@ -128,3 +128,5 @@ alias cls='clear'
 alias logisim='logisim-evolution'
 alias quit='exit'
 alias :q='quit'
+alias ff='cd $(find . -type d -print | fzf)'
+alias hf="cd ~ && cd \$(find ~/ -type d \( -name node_modules -o -name .git \) -prune -o -name '*'  -type d -print | fzf)"
