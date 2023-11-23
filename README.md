@@ -3,6 +3,7 @@ Some of my .dotfile setup
 ```sh
 ❯ git ls-tree -r --name-only HEAD | tree --fromfile -a
 .
+├── .clang-format
 ├── git
 │   └── .gitconfig
 ├── nvim
@@ -34,8 +35,9 @@ Some of my .dotfile setup
 └── zsh
     ├── .p10k.zsh
     └── .zshrc
+
+9 directories, 24 files
 ```
-9 directories, 23 files
 
 ### GIT
 ln -s ~/.dotfiles/git/.gitconfig ~/.gitconfig
