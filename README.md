@@ -1,6 +1,6 @@
 # .dotfiles
 Some of my .dotfile setup
-
+```sh
 ❯ git ls-tree -r --name-only HEAD | tree --fromfile -a
 .
 ├── git
@@ -34,7 +34,7 @@ Some of my .dotfile setup
 └── zsh
     ├── .p10k.zsh
     └── .zshrc
-
+```
 9 directories, 23 files
 
 ### GIT
