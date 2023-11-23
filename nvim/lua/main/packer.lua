@@ -33,6 +33,7 @@ return require("packer").startup(function(use)
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
 	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
+    use("HiPhish/nvim-ts-rainbow2")
 	use("theprimeagen/harpoon")
     use("christoomey/vim-tmux-navigator")
 

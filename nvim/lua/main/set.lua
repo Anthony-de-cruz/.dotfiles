@@ -40,3 +40,8 @@ vim.opt.colorcolumn = "80"
 vim.opt.clipboard = "unnamedplus"
 
 vim.g.mapleader = " "
+
+-- Netrw
+-- netrw is extremely buggy and breaks without the banner
+vim.g.netrw_banner = 1 
+vim.g.netrw_liststyle = 3

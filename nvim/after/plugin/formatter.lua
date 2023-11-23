@@ -39,6 +39,23 @@ require("formatter").setup({
 			end,
 		},
 
+		python = {
+			require("formatter.filetypes.python").black,
+			function()
+				return {
+					exe = "black",
+					args = {
+						util.escape_path(util.get_current_buffer_file_path()),
+					},
+					stdin = true,
+				}
+			end,
+		},
+
+		c = {
+			require("formatter.filetypes.c").clangformat,
+		},
+
 		-- Use the special "*" filetype for defining formatter configurations on
 		-- any filetype
 		["*"] = {
