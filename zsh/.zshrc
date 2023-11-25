@@ -127,8 +127,13 @@ alias ls='lsd'
 alias cls='clear'
 alias logisim='logisim-evolution'
 alias quit='exit'
-alias :q='quit'
-alias ff='cd $(find . -type d -print | fzf)'
-alias hf="cd ~ && cd \$(find ~/ -type d \( -name node_modules -o -name .git \) -prune -o -name '*'  -type d -print | fzf)"
+alias :q='exit'
 
-export QSYS_ROOTDIR="/home/anthonydecruz/intelFPGA_lite/22.1std/quartus/sopc_builder/bin"
+# Fuzzy find folder navigation
+alias ff='cd "$(find . -type d | fzf)"'
+alias tf='echo "$(find . -type d | fzf)"'
+alias hf='cd ~ && cd "$(find . -type d | fzf)"'
+# alias hf="cd ~ && cd \$(find ~/ -type d \( -name node_modules -o -name .git \) -prune -o -name '*'  -type d -print | fzf)"
+
+# Visual representation of the working directory git project structure
+alias struct='echo "❯ git ls-tree -r --name-only HEAD | tree --fromfile -a" && git ls-tree -r --name-only HEAD | tree --fromfile -a'
