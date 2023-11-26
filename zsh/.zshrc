@@ -137,3 +137,8 @@ alias hf='cd ~ && cd "$(find . -type d | fzf)"'
 
 # Visual representation of the working directory git project structure
 alias struct='echo "❯ git ls-tree -r --name-only HEAD | tree --fromfile -a" && git ls-tree -r --name-only HEAD | tree --fromfile -a'
+
+# Uni VPN
+alias vpn='f5fpc -s -t https://vpn2020.uea.ac.uk/ -x'
+alias vpn-info='f5fpc --info'
+alias vpn-quit='f5fpc -o'
