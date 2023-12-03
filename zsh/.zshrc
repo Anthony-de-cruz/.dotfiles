@@ -83,7 +83,7 @@ plugins=(
 	dirhistory # This plugin adds keyboard shortcuts for navigating directory history and hierarchy.
 	rust
 	git
-	thefuck
+	#thefuck
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 	)
@@ -119,12 +119,13 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-eval $(thefuck --alias)
+# eval $(thefuck --alias)
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
 alias ls='lsd'
 alias cls='clear'
+alias wipe='clear -x'
 alias logisim='logisim-evolution'
 alias quit='exit'
 alias :q='exit'
@@ -132,7 +133,7 @@ alias :q='exit'
 # Fuzzy find folder navigation
 alias ff='cd "$(find . -type d | fzf)"'
 alias tf='echo "$(find . -type d | fzf)"'
-alias hf='cd ~ && cd "$(find . -type d | fzf)"'
+alias hf='cd "$(find ~ -type d | fzf)"'
 # alias hf="cd ~ && cd \$(find ~/ -type d \( -name node_modules -o -name .git \) -prune -o -name '*'  -type d -print | fzf)"
 
 # Visual representation of the working directory git project structure
