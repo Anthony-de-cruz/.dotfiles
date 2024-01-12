@@ -56,6 +56,25 @@ require("formatter").setup({
 			require("formatter.filetypes.c").clangformat,
 		},
 
+		java = {
+			--require("formatter.filetypes.java").clangformat,
+			function()
+				return {
+					exe = "clang-format",
+					args = { "--assume-filename=.java" },
+					stdin = true,
+				}
+			end,
+		},
+
+		html = {
+			require("formatter.filetypes.html").prettier,
+		},
+
+		css = {
+			require("formatter.filetypes.css").prettier,
+		},
+
 		-- Use the special "*" filetype for defining formatter configurations on
 		-- any filetype
 		["*"] = {

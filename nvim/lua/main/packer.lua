@@ -33,11 +33,18 @@ return require("packer").startup(function(use)
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
 	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
-    use("HiPhish/nvim-ts-rainbow2")
+	use("HiPhish/nvim-ts-rainbow2")
 	use("theprimeagen/harpoon")
-    use("christoomey/vim-tmux-navigator")
+	use("christoomey/vim-tmux-navigator")
 
 	-- Tool Plugins
+	use({
+		"folke/which-key.nvim",
+		config = function()
+			vim.o.timeout = true
+			vim.o.timeoutlen = 300
+		end,
+	})
 	use("mbbill/undotree")
 	use("tpope/vim-fugitive")
 	use("lewis6991/gitsigns.nvim")
@@ -52,8 +59,15 @@ return require("packer").startup(function(use)
 
 	-- Cosmetic Plugins
 	use("navarasu/onedark.nvim")
+	use("folke/tokyonight.nvim")
 	use({
 		"nvim-lualine/lualine.nvim",
 		requires = { "nvim-tree/nvim-web-devicons", opt = true },
+	})
+	use({
+		"ellisonleao/glow.nvim",
+		config = function()
+			require("glow").setup()
+		end,
 	})
 end)
