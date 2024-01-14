@@ -1,10 +1,9 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
-
 -- Move things around when highlighted
---vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
---vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+-- vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+-- vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Set cursor to middle when <C-d/u>
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
