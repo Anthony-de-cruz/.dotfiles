@@ -7,19 +7,44 @@ Some of my .dotfile setup
 ├── git
 │   └── .gitconfig
 ├── nvim
+│   ├── init.lua
+│   ├── lazy-lock.json
+│   ├── lua
+│   │   ├── .luarc.json
+│   │   ├── main
+│   │   │   ├── init.lua
+│   │   │   ├── keymap.lua
+│   │   │   ├── lazy.lua
+│   │   │   └── set.lua
+│   │   └── plugins
+│   │       ├── alpha-nvim.lua
+│   │       ├── harpoon.lua
+│   │       ├── lualine.lua
+│   │       ├── mason-lspconfig.lua
+│   │       ├── neo-tree.lua
+│   │       ├── none-ls.lua
+│   │       ├── onedark.lua
+│   │       ├── telescope.lua
+│   │       ├── treesitter.lua
+│   │       ├── vim-startuptime.lua
+│   │       └── vim-tmux-navigator.lua
+│   └── README.md
+├── nvim_old
 │   ├── after
 │   │   └── plugin
 │   │       ├── colors.lua
 │   │       ├── formatter.lua
 │   │       ├── fugitive.lua
 │   │       ├── gitsigns.lua
+│   │       ├── glow.lua
 │   │       ├── harpoon.lua
 │   │       ├── lsp.lua
 │   │       ├── lualine.lua
 │   │       ├── mason.lua
 │   │       ├── telescope.lua
 │   │       ├── treesitter.lua
-│   │       └── undotree.lua
+│   │       ├── undotree.lua
+│   │       └── whichkey.lua
 │   ├── .gitignore
 │   ├── init.lua
 │   ├── keybinds.md
@@ -36,7 +61,7 @@ Some of my .dotfile setup
     ├── .p10k.zsh
     └── .zshrc
 
-9 directories, 24 files
+13 directories, 45 files
 ```
 
 ### GIT
