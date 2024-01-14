@@ -1,4 +1,5 @@
 # Neovim
+My Neovim setup as of January 2024
 
 ### Package Management
 - lazy to manage packages
