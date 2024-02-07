@@ -11,6 +11,7 @@ My Neovim setup as of January 2024
 
 - nvim-lspconfig
 - mason-lspconfig
+- nvim-jdtls (for java)
 
 ### Completion
 
@@ -54,10 +55,10 @@ NORMAL MODE
 - <leader>a : add | add file to the list
 - <C-e> : quick menu | toggle quick menu
 
-- <C-h> : nav h | nav to file 1
-- <C-t> : nav t | nav to file 2
-- <C-n> : nav n | nav to file 3
-- <C-s> : nav s | nav to file 4
+- <C-1> : nav 1 | nav to file 1
+- <C-2> : nav 2 | nav to file 2
+- <C-3> : nav 3 | nav to file 3
+- <C-4> : nav 4 | nav to file 4
 
 ##### Undotree
 
