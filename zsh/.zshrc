@@ -83,7 +83,6 @@ plugins=(
 	dirhistory # This plugin adds keyboard shortcuts for navigating directory history and hierarchy.
 	rust
 	git
-	#thefuck
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 	)
@@ -127,6 +126,7 @@ alias ls='lsd'
 alias cls='clear'
 alias wipe='clear -x'
 alias logisim='logisim-evolution'
+alias lg='lazygit'
 alias quit='exit'
 alias :q='exit'
 
@@ -137,9 +137,18 @@ alias hf='cd "$(find ~ -type d | fzf)"'
 # alias hf="cd ~ && cd \$(find ~/ -type d \( -name node_modules -o -name .git \) -prune -o -name '*'  -type d -print | fzf)"
 
 # Visual representation of the working directory git project structure
-alias struct='echo "❯ git ls-tree -r --name-only HEAD | tree --fromfile -a" && git ls-tree -r --name-only HEAD | tree --fromfile -a'
+alias gtree='git ls-tree -r --name-only HEAD | tree --fromfile -a'
 
 # Uni VPN
 alias vpn='f5fpc -s -t https://vpn2020.uea.ac.uk/ -x'
 alias vpn-info='f5fpc --info'
 alias vpn-quit='f5fpc -o'
+
+export GRADLE_USER_HOME="$HOME/.gradle"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# To customize prompt, run `p10k configure` or edit ~/.dotfiles/zsh/.p10k.zsh.
+[[ ! -f ~/.dotfiles/zsh/.p10k.zsh ]] || source ~/.dotfiles/zsh/.p10k.zsh
