@@ -74,6 +74,9 @@ ln -s ~/.dotfiles/zsh/.p10k.zsh ~/.p10k.zsh
 ### NVIM
 ln -s ~/.dotfiles/nvim/ ~/.config/nvim
 
+### IDEAVIM
+ln -s ~/.dotfiles/ideavim/.ideavimrc ~/.ideavimrc
+
 ### TMUX
 ln -s ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
 
