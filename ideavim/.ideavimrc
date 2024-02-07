@@ -1,0 +1,15 @@
+" SETTINGS
+set clipboard=unnamed,unnamed plus
+set clipboard+=idea-put
+set scrolloff=8
+set incsearch
+
+
+set ideajoin " Lets you join together lines
+set ideastatusicon=gray " Makes the icon in the bar less distracting
+
+" KEY BINDS
+let mapleader=" "
+" Set cursor to middle when <C-d/u> - causing weird bugs
+"map <C-u> <C-u>zz " Up
+"map <C-d <C-d>zz " Down
