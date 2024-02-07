@@ -39,7 +39,7 @@ NORMAL MODE
 - `gc[count]{motion}` - (Op-pending) Toggles the region using linewise comment
 - `gb[count]{motion}` - (Op-pending) Toggles the region using blockwise comment
 
-###### VISUAL MODE
+VISUAL MODE
 
 - `gc` - Toggles the region using linewise comment
 - `gb` - Toggles the region using blockwise comment
