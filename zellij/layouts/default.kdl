@@ -1,0 +1,31 @@
+layout {
+    pane size=1 borderless=true {
+        plugin location="file:~/.dotfiles/zellij/plugins/zjstatus.wasm" {
+            format_left  " {mode}  {tabs}"
+            format_right "#[fg=green,bold]{swap_layout}  {datetime}  #[fg=green,bold]{session} "
+            format_space ""
+
+            hide_frame_for_single_pane "true"
+
+            mode_normal        "#[fg=green,bold]{name}"
+            mode_locked        "#[fg=blue,bold]{name}"
+            mode_resize        "#[fg=blue,bold]{name}"
+            mode_pane          "#[fg=blue,bold]{name}"
+            mode_tab           "#[fg=blue,bold]{name}"
+            mode_scroll        "#[fg=blue,bold]{name}"
+            mode_session       "#[fg=blue,bold]{name}"
+            mode_move          "#[fg=blue,bold]{name}"
+
+            tab_normal   "#[fg=#6C7086,italic] {name} "
+            tab_active   "#[fg=fg,bold] {name} "
+
+            datetime        "#[fg=black,bold]{format}"
+            datetime_format "%A, %d %b %Y %H:%M"
+            datetime_timezone "Europe__London"
+        }
+    }
+    pane
+    //pane size=2 borderless=true {
+    //    plugin location="zellij:status-bar"
+    //}
+}
