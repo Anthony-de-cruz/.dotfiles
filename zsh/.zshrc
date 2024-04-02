@@ -131,10 +131,12 @@ alias quit='exit'
 alias :q='exit'
 
 # Fuzzy find folder navigation
-alias ff='cd "$(find . -type d | fzf)"'
-alias tf='echo "$(find . -type d | fzf)"'
-alias hf='cd "$(find ~ -type d | fzf)"'
-# alias hf="cd ~ && cd \$(find ~/ -type d \( -name node_modules -o -name .git \) -prune -o -name '*'  -type d -print | fzf)"
+alias ff='cd "$(find . -type d -not -path "./.git/*" | 
+    fzf --layout=reverse --info=inline)"' # folder-find
+alias hf='cd "$(find ~ -type d -not -path "./.git/*" |
+    fzf --layout=reverse --info=inline)"' # home-find
+alias pf='echo "$(find . -type d -not -path "./.git/* |
+    fzf --layout=reverse --info=inline)"' # path-find
 
 # Visual representation of the working directory git project structure
 alias gtree='git ls-tree -r --name-only HEAD | tree --fromfile -a'
@@ -144,6 +146,29 @@ alias vpn='f5fpc -s -t https://vpn2020.uea.ac.uk/ -x'
 alias vpn-info='f5fpc --info'
 alias vpn-quit='f5fpc -o'
 
+# Nvim
+alias nv='nvim-main'
+alias nvim-main='NVIM_APPNAME=nvim/main nvim'
+alias nvim-min='NVIM_APPNAME=nvim/minimal nvim'
+alias nvim-old='NVIM_APPNAME=nvim/old nvim'
+
+function nvims() {
+  # Assumes all configs exist in directories named ~/.config/nvim/*/
+    local items=("main" "minimal" "old")
+    local config=$(printf "%s\n" "${items[@]}" | fzf --prompt="Neovim Configs > " --height=50% --layout=reverse --info=inline --exit-0)
+ 
+  # If I exit fzf without selecting a config, don't open Neovim
+  [[ -z $config ]] && echo "No config selected" && return
+    
+  echo $config
+ 
+  # Open Neovim with the selected config
+  NVIM_APPNAME=$("nvim/"$config) nvim
+}
+
+export VISUAL="/usr/bin/nvim"
+export EDITOR="$VISUAL"
+
 export GRADLE_USER_HOME="$HOME/.gradle"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
@@ -152,3 +177,9 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # To customize prompt, run `p10k configure` or edit ~/.dotfiles/zsh/.p10k.zsh.
 [[ ! -f ~/.dotfiles/zsh/.p10k.zsh ]] || source ~/.dotfiles/zsh/.p10k.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH=$PATH:/home/anthonydecruz/.spicetify

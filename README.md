@@ -80,3 +80,5 @@ ln -s ~/.dotfiles/ideavim/.ideavimrc ~/.ideavimrc
 ### TMUX
 ln -s ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
 
+### Zellij
+ln -s ~/.dotfiles/zellij/ ~/.config/zellij
