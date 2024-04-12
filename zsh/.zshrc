@@ -135,7 +135,7 @@ alias ff='cd "$(find . -type d -not -path "./.git/*" |
     fzf --layout=reverse --info=inline)"' # folder-find
 alias hf='cd "$(find ~ -type d -not -path "./.git/*" |
     fzf --layout=reverse --info=inline)"' # home-find
-alias pf='echo "$(find . -type d -not -path "./.git/* |
+alias pf='echo "$(find . -type d -not -path "./.git/*" |
     fzf --layout=reverse --info=inline)"' # path-find
 
 # Visual representation of the working directory git project structure
