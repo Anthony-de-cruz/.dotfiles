@@ -147,23 +147,22 @@ alias vpn-info='f5fpc --info'
 alias vpn-quit='f5fpc -o'
 
 # Nvim
-alias nv='nvim-main'
+export NVIM_APPNAME="nvim/main"
+alias nv='nvim'
 alias nvim-main='NVIM_APPNAME=nvim/main nvim'
 alias nvim-min='NVIM_APPNAME=nvim/minimal nvim'
 alias nvim-old='NVIM_APPNAME=nvim/old nvim'
 
 function nvims() {
-  # Assumes all configs exist in directories named ~/.config/nvim/*/
+    # Assumes all configs exist in directories named ~/.config/nvim/*/
     local items=("main" "minimal" "old")
     local config=$(printf "%s\n" "${items[@]}" | fzf --prompt="Neovim Configs > " --height=50% --layout=reverse --info=inline --exit-0)
  
-  # If I exit fzf without selecting a config, don't open Neovim
-  [[ -z $config ]] && echo "No config selected" && return
-    
-  echo $config
+    # If I exit fzf without selecting a config, don't open Neovim
+    [[ -z $config ]] && echo "No config selected" && return
  
-  # Open Neovim with the selected config
-  NVIM_APPNAME=$("nvim/"$config) nvim
+    # Open Neovim with the selected config
+    NVIM_APPNAME="nvim/${config}" nvim
 }
 
 export VISUAL="/usr/bin/nvim"
