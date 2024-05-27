@@ -7,7 +7,11 @@ return {
 				-- Conform will run multiple formatters sequentially
 				-- Use a sub-list to run only the first available formatter
 				lua = { "stylua" },
+				c = { "clang-format" },
+				cpp = { "clang-format" },
 				python = { "black" },
+				java = { "clang-format" },
+				rust = { "rustfmt" },
 				typescript = { { "prettierd", "prettier" } },
 				javascript = { { "prettierd", "prettier" } },
 				json = { { "prettierd", "prettier" } },
