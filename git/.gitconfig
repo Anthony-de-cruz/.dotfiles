@@ -3,3 +3,5 @@
 	name = Anthony de Cruz
 [init]
 	defaultBranch = main
+[alias]
+	st = status -s
