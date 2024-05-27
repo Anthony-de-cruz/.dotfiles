@@ -26,3 +26,11 @@ ln -s ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
 ### Zellij
 
 ln -s ~/.dotfiles/zellij/ ~/.config/zellij
+
+### Spicetify
+
+ln -s ~/.dotfiles/spicetify/ ~/.config/spicetify
+
+### Kitty
+
+ln -s ~/.dotfiles/kitty/ ~/.config/
