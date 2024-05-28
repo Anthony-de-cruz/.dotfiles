@@ -34,3 +34,11 @@ ln -s ~/.dotfiles/spicetify/ ~/.config/spicetify
 ### Kitty
 
 ln -s ~/.dotfiles/kitty/ ~/.config/
+
+### Hypr
+
+ln -s ~/.dotfiles/hypr/ ~/.config/
+
+### Waybar
+
+ln -s ~/.dotfiles/waybar/ ~/.config/
