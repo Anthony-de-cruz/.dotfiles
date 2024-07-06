@@ -163,6 +163,9 @@ function nvims() {
 export VISUAL="/usr/bin/nvim"
 export EDITOR="$VISUAL"
 
+# Set up fzf key bindings and fuzzy completion
+# source <(fzf --zsh)
+
 export GRADLE_USER_HOME="$HOME/.gradle"
 
 # SDKMAN
