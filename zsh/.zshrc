@@ -126,7 +126,6 @@ export PATH="$HOME/.local/bin:$PATH"
 alias ls='lsd'
 alias cls='clear'
 alias wipe='clear -x'
-alias logisim='logisim-evolution'
 alias lg='lazygit'
 alias quit='exit'
 alias :q='exit'
