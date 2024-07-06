@@ -141,11 +141,6 @@ alias pf='echo "$(find . -type d -not -path "./.git/*" |
 # Visual representation of the working directory git project structure
 alias gtree='git ls-tree -r --name-only HEAD | tree --fromfile -a'
 
-# Uni VPN
-alias vpn='f5fpc -s -t https://vpn2020.uea.ac.uk/ -x'
-alias vpn-info='f5fpc --info'
-alias vpn-quit='f5fpc -o'
-
 # Nvim
 export NVIM_APPNAME="nvim/main"
 alias nv='nvim'
