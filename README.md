@@ -42,3 +42,7 @@ ln -s ~/.dotfiles/hypr/ ~/.config/
 ### Waybar
 
 ln -s ~/.dotfiles/waybar/ ~/.config/
+
+### Bat
+
+ln -s ~/.dotfiles/bat/ ~/.config/
