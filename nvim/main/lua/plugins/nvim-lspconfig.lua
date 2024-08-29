@@ -24,6 +24,10 @@ return {
 		})
 		lspconfig.clangd.setup({
 			capabilities = capabilities,
+			cmd = {
+				"clangd",
+				"--clang-tidy",
+			},
 		})
 		-- jdtls now being handled by nvim-jdtls
 		-- lspconfig.jdtls.setup({
