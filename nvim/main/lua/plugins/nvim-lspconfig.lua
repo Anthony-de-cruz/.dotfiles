@@ -13,7 +13,10 @@ return {
 		lspconfig.cssls.setup({
 			capabilities = capabilities,
 		})
-		lspconfig.tsserver.setup({
+		lspconfig.ts_ls.setup({
+			capabilities = capabilities,
+		})
+		lspconfig.gopls.setup({
 			capabilities = capabilities,
 		})
 		lspconfig.lua_ls.setup({

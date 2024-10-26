@@ -12,13 +12,14 @@ return {
 				python = { "black" },
 				java = { "clang-format" },
 				rust = { "rustfmt" },
-				typescript = { { "prettierd", "prettier" } },
-				javascript = { { "prettierd", "prettier" } },
-				json = { { "prettierd", "prettier" } },
-				html = { { "prettierd", "prettier" } },
-				css = { { "prettierd", "prettier" } },
-				scss = { { "prettierd", "prettier" } },
-				markdown = { { "prettierd", "prettier" } },
+				go = { "gofmt", "goimports-revised", "golines" },
+				typescript = { { "prettierd", "prettier", stop_after_first = true } },
+				javascript = { { "prettierd", "prettier", stop_after_first = true } },
+				json = { { "prettierd", "prettier", stop_after_first = true } },
+				html = { { "prettierd", "prettier", stop_after_first = true } },
+				css = { { "prettierd", "prettier", stop_after_first = true } },
+				scss = { { "prettierd", "prettier", stop_after_first = true } },
+				markdown = { { "prettierd", "prettier", stop_after_first = true } },
 			},
 			format_on_save = {
 				-- These options will be passed to conform.format()
@@ -31,5 +32,13 @@ return {
 			-- have other formatters configured.
 			["_"] = { "trim_whitespace" },
 		})
+		require("conform").formatters.golines = {
+			prepend_args = {
+				"-m",
+				"80",
+				"-t",
+				"8",
+			},
+		}
 	end,
 }
