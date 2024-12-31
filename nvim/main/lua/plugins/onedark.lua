@@ -44,6 +44,7 @@ return {
 			},
 		})
 
+		-- setup must be called before loading
 		require("onedark").load()
 	end,
 }
