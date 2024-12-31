@@ -10,6 +10,15 @@ return {
 	config = function()
 		require("neo-tree").setup({
 			vim.keymap.set("n", "<leader>pv", ":Neotree filesystem reveal float<CR>"),
+			event_handlers = {
+				{
+					event = "neo_tree_buffer_enter",
+					handler = function(arg)
+						vim.opt.nu = true
+						vim.opt.relativenumber = true
+					end,
+				},
+			},
 			filesystem = {
 				filtered_items = {
 					--visible = true,

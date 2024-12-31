@@ -1,6 +1,7 @@
 return {
 	"EdenEast/nightfox.nvim",
-	lazy = false,
+	lazy = false, -- make sure we load this during startup if it is your main colorscheme
+	priority = 1000, -- make sure to load this before all the other start plugins
 
 	config = function()
 		-- Default options
@@ -9,7 +10,7 @@ return {
 				-- Compiled file's destination location
 				compile_path = vim.fn.stdpath("cache") .. "/nightfox",
 				compile_file_suffix = "_compiled", -- Compiled file suffix
-				transparent = false, -- Disable setting background
+				transparent = true, -- Disable setting background
 				terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
 				dim_inactive = false, -- Non focused panes set to alternative background
 				module_default = true, -- Default enable value for modules
