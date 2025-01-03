@@ -14,7 +14,7 @@ return {
 					"pyright",
 					"html",
 					"cssls",
-					"ts_ls",
+					--"ts_ls",
 					"gopls",
 					"lua_ls",
 					"rust_analyzer",
