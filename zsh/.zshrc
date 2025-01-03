@@ -79,13 +79,11 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	sudo # Easily prefix your current or previous commands with sudo by pressing esc twice.
-	web-search # This plugin adds aliases for searching with Google, Wiki, Bing, YouTube and other popular services. web_search <context> <term> [more terms if you want]
 	dirhistory # This plugin adds keyboard shortcuts for navigating directory history and hierarchy.
-	rust
 	git
 	zsh-autosuggestions
-	zsh-syntax-highlighting
-	)
+    zsh-syntax-highlighting
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -118,12 +116,14 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
+
 # eval $(thefuck --alias)
 
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH=$PATH:/usr/local/go/bin
 
-alias ls='lsd'
 alias cls='clear'
 alias wipe='clear -x'
 alias lg='lazygit'
@@ -162,6 +162,8 @@ function nvims() {
 
 export VISUAL="/usr/bin/nvim"
 export EDITOR="$VISUAL"
+
+export PATH=${PATH}:`go env GOPATH`/bin
 
 # Set up fzf key bindings and fuzzy completion
 # source <(fzf --zsh)

@@ -4,7 +4,8 @@ Some of my .dotfile setup
 
 ### GIT
 
-ln -s ~/.dotfiles/git/.gitconfig ~/.gitconfig
+mkdir ~/.config/git
+ln -s ~/.dotfiles/git/.gitconfig ~/.config/git/config
 
 ### ZSH
 
@@ -21,7 +22,9 @@ ln -s ~/.dotfiles/ideavim/.ideavimrc ~/.ideavimrc
 
 ### TMUX
 
-ln -s ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
+mkdir ~/.config/tmux && mkdir ~/.config/tmux/plugins
+git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins
+ln -s ~/.dotfiles/tmux/.tmux.conf ~/.config/tmux/tmux.conf
 
 ### Zellij
 
