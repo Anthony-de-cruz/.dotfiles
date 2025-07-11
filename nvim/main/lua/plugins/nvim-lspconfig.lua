@@ -25,12 +25,21 @@ return {
 		lspconfig.rust_analyzer.setup({
 			capabilities = capabilities,
 		})
+		-- lspconfig.omnisharp.setup({
+		-- 	capabilities = capabilities,
+		-- })
+		lspconfig.csharp_ls.setup({
+			capabilities = capabilities,
+		})
 		lspconfig.clangd.setup({
 			capabilities = capabilities,
 			cmd = {
 				"clangd",
 				"--clang-tidy",
 			},
+		})
+		lspconfig.zls.setup({
+			capabilities = capabilities,
 		})
 		-- jdtls now being handled by nvim-jdtls
 		-- lspconfig.jdtls.setup({

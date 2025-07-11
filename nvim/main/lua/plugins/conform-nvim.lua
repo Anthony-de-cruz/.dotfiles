@@ -9,6 +9,7 @@ return {
 				lua = { "stylua" },
 				c = { "clang-format" },
 				cpp = { "clang-format" },
+				cs = { "dotnet format" },
 				python = { "black" },
 				java = { "clang-format" },
 				rust = { "rustfmt" },
