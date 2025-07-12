@@ -9,8 +9,24 @@ ln -s ~/.dotfiles/git/.gitconfig ~/.config/git/config
 
 ### ZSH
 
-ln -s ~/.dotfiles/zsh/.zshrc ~/.zshrc
-ln -s ~/.dotfiles/zsh/.p10k.zsh ~/.p10k.zsh
+# Overwrite config.
+rm ~/.zshrc && ln -s ~/.dotfiles/zsh/.zshrc ~/.zshrc
+rm ~/.p10k.zsh && ln -s ~/.dotfiles/zsh/.p10k.zsh ~/.p10k.zsh
+rm -r ~/.oh-my-zsh
+
+# Install ZSH and set as default shell.
+sudo dnf install zsh
+chsh -s $(which zsh)
+
+# Install OMZSH
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Install Plugins
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+exec zsh
 
 ### NVIM
 
