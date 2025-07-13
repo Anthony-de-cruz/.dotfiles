@@ -19,7 +19,7 @@ vim.opt.termguicolors = true
 
 -- Netrw
 -- netrw is extremely buggy and breaks without the banner
-vim.g.netrw_banner = 0
+vim.g.netrw_banner = 1
 vim.g.netrw_liststyle = 3
 
 -- ---------------------------- Editor ---------------------------- --
@@ -50,3 +50,10 @@ vim.opt.isfname:append("@-@")
 -- Search
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
+
+-- Yank
+vim.api.nvim_create_autocmd("TextYankPost", {
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+})

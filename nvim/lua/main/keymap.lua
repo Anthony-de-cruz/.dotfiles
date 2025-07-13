@@ -6,6 +6,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Netrw
+-- Replaced with Neo-Tree
 -- vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- Set cursor to middle when <C-d/u>
