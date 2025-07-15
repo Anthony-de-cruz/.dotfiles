@@ -42,6 +42,8 @@ mkdir ~/.config/tmux && mkdir ~/.config/tmux/plugins
 git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins
 ln -s ~/.dotfiles/tmux/.tmux.conf ~/.config/tmux/tmux.conf
 
+In tmux, run: `<leader> I`
+
 ### Zellij
 
 ln -s ~/.dotfiles/zellij/ ~/.config/zellij
