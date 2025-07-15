@@ -22,11 +22,11 @@ return {
 				scss = { { "prettierd", "prettier", stop_after_first = true } },
 				markdown = { { "prettierd", "prettier", stop_after_first = true } },
 			},
-			format_on_save = {
-				-- These options will be passed to conform.format()
-				timeout_ms = 500,
-				lsp_fallback = true,
-			},
+			--format_on_save = {
+			--	-- These options will be passed to conform.format()
+			--	timeout_ms = 500,
+			--	lsp_fallback = true,
+			--},
 			-- Use the "*" filetype to run formatters on all filetypes.
 			-- ["*"] = { "codespell" },
 			-- Use the "_" filetype to run formatters on filetypes that don't
@@ -41,5 +41,8 @@ return {
 				"8",
 			},
 		}
+		vim.keymap.set("n", "<leader>f", function()
+			require("conform").format({lsp_fallback = true})
+		end)
 	end,
 }
