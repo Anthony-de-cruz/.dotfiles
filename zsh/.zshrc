@@ -126,6 +126,7 @@ export PATH=$PATH:/usr/local/go/bin
 
 alias cls='clear'
 alias wipe='clear -x'
+alias nv='nvim'
 alias lg='lazygit'
 alias quit='exit'
 alias :q='exit'
