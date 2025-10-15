@@ -28,3 +28,13 @@ vim.keymap.set("x", "<leader>p", '"_dP')
 -- Same idea but for deleting
 vim.keymap.set("n", "<leader>d", '"_d')
 vim.keymap.set("v", "<leader>d", '"_d')
+
+-- LSP
+vim.keymap.set("n", "K", vim.lsp.buf.hover, { noremap = true })
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { noremap = true })
+vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { noremap = true })
+vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { noremap = true })
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { noremap = true })
+
+-- Diagnostics
+vim.keymap.set('n', '<leader>do', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
