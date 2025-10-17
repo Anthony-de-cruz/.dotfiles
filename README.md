@@ -4,8 +4,10 @@ Some of my .dotfile setup
 
 ### GIT
 
+```sh
 mkdir ~/.config/git
 ln -s ~/.dotfiles/git/.gitconfig ~/.config/git/config
+```
 
 ### ZSH
 

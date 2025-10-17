@@ -142,7 +142,7 @@ alias pf='echo "$(find . -type d -not -path "./.git/*" |
 export VISUAL="/usr/bin/nvim"
 export EDITOR="$VISUAL"
 
-export PATH=${PATH}:`go env GOPATH`/bin
+#export PATH=${PATH}:`go env GOPATH`/bin
 
 # Set up fzf key bindings and fuzzy completion
 # source <(fzf --zsh)
