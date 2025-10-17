@@ -2,6 +2,7 @@
   font-family: "MesloLGS NF", "Font Awesome 6 Free", "Font Awesome 6 Brands",
     monospace;
   font-size: 13px;
+  font-weight: bold;
 }
 
 window#waybar {
@@ -52,7 +53,7 @@ button:hover {
 
 /* you can set a style on hover for any module like this */
 #pulseaudio:hover {
-  background-color: #a37800;
+  /*background-color: #a37800;*/
 }
 
 #workspaces button {
@@ -116,18 +117,19 @@ button:hover {
 }
 
 #clock {
-  background-color: #64727d;
+  /*background-color: #64727d;*/
 }
 
 #battery {
-  background-color: #ffffff;
-  color: #000000;
+  /*background-color: #ffffff;
+  color: #000000;*/
+  color: #ffffff;
 }
 
 #battery.charging,
 #battery.plugged {
   color: #ffffff;
-  background-color: #26a65b;
+  /*background-color: #26a65b;*/
 }
 
 @keyframes blink {
@@ -185,20 +187,21 @@ label:focus {
 }
 
 #backlight {
-  background-color: #90b1b1;
+  /*background-color: #90b1b1;*/
 }
 
 #network {
-  background-color: #2980b9;
+  /*background-color: #2980b9;*/
 }
 
 #network.disconnected {
-  background-color: #f53c3c;
+  /*background-color: #f53c3c;*/
 }
 
 #pulseaudio {
-  background-color: #f1c40f;
-  color: #000000;
+  /*background-color: #f1c40f;*/
+  /*color: #000000;*/
+  color: #ffffff;
 }
 
 #pulseaudio.muted {
