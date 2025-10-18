@@ -2,13 +2,16 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
+
+  # Nix
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -77,19 +80,24 @@
     #media-session.enable = true;
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
   programs.zsh.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.anthonydecruz = {
+  users.users."anthonydecruz" = {
     isNormalUser = true;
     description = "Anthony de Cruz";
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
+  };
+
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+      "anthonydecruz" = import ./home.nix; # Pass args down to our modules.
+    };
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -134,8 +142,8 @@
 
     ### GUI Apps ###
     kitty
-    firefox
     ungoogled-chromium
+    inputs.zen-browser.packages."${system}".default
     jetbrains.rider
     jetbrains.pycharm-professional
     nautilus # File Explorer
