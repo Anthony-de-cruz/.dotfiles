@@ -55,6 +55,7 @@ ln -s ~/.dotfiles/ideavim/.ideavimrc ~/.ideavimrc
 mkdir ~/.config/tmux && mkdir ~/.config/tmux/plugins
 git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins
 ln -s ~/.dotfiles/tmux/.tmux.conf ~/.config/tmux/tmux.conf
+ln -s ~/.dotfiles/tmux/onedark.tmux ~/.config/tmux/onedark.tmux
 ```
 
 In tmux, run: `<leader> I`
