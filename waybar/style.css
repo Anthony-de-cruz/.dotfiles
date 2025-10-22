@@ -59,7 +59,7 @@ button:hover {
 #workspaces button {
   padding: 0 5px;
   background-color: transparent;
-  color: #ffffff;
+  color: #64727d;
 }
 
 #workspaces button:hover {
@@ -67,12 +67,16 @@ button:hover {
 }
 
 #workspaces button.focused {
-  background-color: #64727d;
+  background-color: #ffffff;
   box-shadow: inset 0 -3px #ffffff;
 }
 
 #workspaces button.urgent {
   background-color: #eb4d4b;
+}
+
+#workspaces button.visible {
+  color: #ffffff;
 }
 
 #mode {
@@ -129,25 +133,38 @@ button:hover {
 #battery.charging,
 #battery.plugged {
   color: #ffffff;
-  /*background-color: #26a65b;*/
 }
 
 @keyframes blink {
-  to {
-    background-color: #ffffff;
-    color: #000000;
+  0% {
+    color: #f53c3c;
+  }
+  33% {
+    color: #ffffff;
+  }
+  34% {
+    color: #ffffff;
+  }
+  66% {
+    color: #ffffff;
+  }
+  67% {
+    color: #ffffff;
+  }
+  100% {
+    color: #f53c3c;
   }
 }
 
 /* Using steps() instead of linear as a timing function to limit cpu usage */
 #battery.critical:not(.charging) {
-  background-color: #f53c3c;
-  color: #ffffff;
+  /*bac kground-color: #f53c3c;*/
+  /*color: #ffffff;*/
+  color: #f53c3c;
   animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: steps(12);
+  animation-duration: 2.5s;
+  animation-timing-function: steps(32);
   animation-iteration-count: infinite;
-  animation-direction: alternate;
 }
 
 #power-profiles-daemon {
@@ -205,8 +222,8 @@ label:focus {
 }
 
 #pulseaudio.muted {
-  background-color: #90b1b1;
-  color: #2a5c45;
+  /*background-color: #90b1b1;*/
+  color: #64727d;
 }
 
 #wireplumber {
@@ -263,20 +280,22 @@ label:focus {
 }
 
 #mpd {
-  background-color: #66cc99;
-  color: #2a5c45;
+  /*background-color: #66cc99;*/
+  /*color: #2a5c45;*/
 }
 
 #mpd.disconnected {
-  background-color: #f53c3c;
+  /*background-color: #f53c3c;*/
+  color: #64727d;
 }
 
 #mpd.stopped {
-  background-color: #90b1b1;
+  /*background-color: #90b1b1;*/
+  color: #64727d;
 }
 
 #mpd.paused {
-  background-color: #51a37a;
+  /*background-color: #51a37a;*/
 }
 
 #language {

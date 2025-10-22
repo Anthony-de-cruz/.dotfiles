@@ -6,8 +6,13 @@
   // "width": 1280, // Waybar width
   "spacing": 4, // Gaps between modules (4px)
   // Choose the order of the modules
-  "modules-left": ["hyprland/workspaces"],
-  "modules-center": ["clock"],
+  "modules-left": [
+      "hyprland/workspaces",
+      "mpd",
+  ],
+  "modules-center": [
+      "clock"
+  ],
   "modules-right": [
     //"idle_inhibitor",
     "pulseaudio",
@@ -17,7 +22,7 @@
     //"cpu",
     //"memory",
     //"temperature",
-    "backlight",
+    //"backlight",
     "sway/language",
     "battery",
     "tray",
@@ -58,8 +63,19 @@
     "tooltip": true,
     "tooltip-format": "{app}: {title}",
   },
+  "bluetooth": {
+    "format": " {status}",
+    "format-connected": "{device_alias}",
+    "format-connected-battery": "{device_alias} {device_battery_percentage}%",
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+    "on-click": "overskride",
+  },
   "mpd": {
-    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
+    //"format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
+    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{artist} - {title} {elapsedTime:%M:%S}/{totalTime:%M:%S} @ {volume}%",
     "format-disconnected": "Disconnected ",
     "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
     "unknown-tag": "N/A",
@@ -68,7 +84,7 @@
       "on": " ",
     },
     "random-icons": {
-      "off": "<span color=\"#f53c3c\"></span> ",
+      /*"off": "<span color=\"#f53c3c\"></span> ",*/
       "on": " ",
     },
     "repeat-icons": {
@@ -83,6 +99,7 @@
     },
     "tooltip-format": "MPD (connected)",
     "tooltip-format-disconnected": "MPD (disconnected)",
+    "on-click": "kitty rmpc",
   },
   "idle_inhibitor": {
     "format": "{icon}",
@@ -151,21 +168,22 @@
   },
   "network": {
     // "interface": "wlp2*", // (Optional) To force the use of this interface
-    "format-wifi": "{essid} ({signalStrength}%) ",
+    "format-wifi": "{essid} {signalStrength}% ",
     "format-ethernet": "{ipaddr}/{cidr} ",
     "tooltip-format": "{ifname} via {gwaddr} ",
     "format-linked": "{ifname} (No IP) ",
-    "format-disconnected": "Disconnected ⚠",
+    "format-disconnected": "Disconnected 󰖪",
     "format-alt": "{ifname}: {ipaddr}/{cidr}",
+    "on-click": "kitty nmtui",
   },
   "pulseaudio": {
     // "scroll-step": 1, // %, can be a float
     "format": "{volume}% {icon} {format_source}",
     "format-bluetooth": "{volume}% {icon} {format_source}",
-    "format-bluetooth-muted": " {icon} {format_source}",
-    "format-muted": " {format_source}",
+    "format-bluetooth-muted": "{volume}%   {icon} {format_source}",
+    "format-muted": "{volume}%   {format_source}",
     "format-source": "{volume}% ",
-    "format-source-muted": "",
+    "format-source-muted": "{volume}%  ",
     "format-icons": {
       "headphone": "",
       "hands-free": "",
@@ -173,7 +191,7 @@
       "phone": "",
       "portable": "",
       "car": "",
-      "default": ["", "", ""],
+      "default": [" ", " ", " "],
     },
     "on-click": "pavucontrol",
   },
