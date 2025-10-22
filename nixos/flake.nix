@@ -2,9 +2,15 @@
   description = "A very basic flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs = {
+      url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    stylix = {
+      url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zen-browser = {
@@ -26,16 +32,16 @@
         modules = [
             ./configuration.nix
             inputs.home-manager.nixosModules.default
+            inputs.stylix.nixosModules.stylix
         ];
     };
 
-    #packages.x86_64-linux.hello = pkgs.hello;
-
-    #packages.x86_64-linux.default = pkgs.hello;
-
-   # devShells.x86_64-linux.default = pkgs.mkShell {
-   #   buildInputs = [ pkgs.zellij ]; # Install a specific package from a specific input
-   # };
+    devShells.x86_64-linux.default = pkgs.mkShell {
+      shellHook = ''
+        $SHELL
+      '';
+      buildInputs = [ pkgs.zellij ]; # Install a specific package from a specific input
+    };
 
   };
 }

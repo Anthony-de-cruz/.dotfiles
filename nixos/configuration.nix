@@ -25,8 +25,11 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable networking
+  # Enable networking.
   networking.networkmanager.enable = true;
+
+  # Enable bluetooth.
+  hardware.bluetooth.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/London";
@@ -44,18 +47,6 @@
     LC_PAPER = "en_GB.UTF-8";
     LC_TELEPHONE = "en_GB.UTF-8";
     LC_TIME = "en_GB.UTF-8";
-  };
-
-  # Enable the X11 windowing system.
-  #services.xserver.enable = true;
-  # Enable the GNOME Desktop Environment.
-  #services.xserver.displayManager.gdm.enable = false;
-  #services.xserver.desktopManager.gnome.enable = false;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "gb";
-    variant = "";
   };
 
   # Configure console keymap
@@ -80,8 +71,35 @@
     #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  # Music Daemon
+  services.mpd = {
+    enable = true;
+    musicDirectory = "/home/anthonydecruz/Music";
+    user = "anthonydecruz";
+    dataDir = "/home/anthonydecruz/.config/mpd";
+    playlistDirectory = "/home/anthonydecruz/.config/mpd/playlists";
+    startWhenNeeded = true;
+    extraConfig = ''
+      audio_output {
+        type "pipewire"
+        name "PipewireOutput"
+      }
+      restore_paused "yes"
+    '';
+  };
+
+  # As a system level service, MPD doesn't know the user level socket by default.
+  systemd.services.mpd.environment = {
+    # Update with your UID, it might change in multiuser systems.
+    XDG_RUNTIME_DIR = "/run/user/1000"; 
+  };
+
+  # Allow hyprland to handle laptop lid switch.
+  services.logind.settings.Login = {
+    HandleLidSwitch = "ignore";
+    HandleLidSwitchDocked = "ignore";
+    HandleLidSwitchExternalPower = "ignore";
+  };
 
   programs.zsh.enable = true;
 
@@ -115,14 +133,24 @@
     tmux
     fzf
     brightnessctl
+    fastfetch
+    # Music Player Daemon + Codecs
+    mpd
+    mpc_cli
+    ffmpeg
+    flac
+    libvorbis
 
     ### Dev Tools ###
     # C
     gcc
     cmake
+    # Dotnet
+    dotnetCorePackages.sdk_9_0-bin
+    roslyn-ls
+    csharp-ls
     # Python
-    python314
-    pyright
+    uv
     # Zig
     zig_0_13
     zls
@@ -136,9 +164,14 @@
 
     ### Desktop GUI ###
     hyprland
-    hyprpaper
-    waybar
-    wofi
+    hyprpaper # Wallpapers
+    hyprshot # Screenshots
+    waybar # Desktop Bar
+    wofi # Launcher
+    mako # Notification Daemon
+
+    ### Desktop TUI ###
+    rmpc # Music player
 
     ### GUI Apps ###
     kitty
@@ -146,19 +179,38 @@
     inputs.zen-browser.packages."${system}".default
     jetbrains.rider
     jetbrains.pycharm-professional
+    obsidian # Note Taking
     nautilus # File Explorer
     loupe # Image Viewer
     simple-scan # Document Scanner
     evince # Document Viewer
     snapshot # Camera Viewer
     gnome-calculator # Calculator
+    overskride # Bluetooth Frontend
   ];
 
+  ###########################
+  ### DESKTOP ENVIRONMENT ###
+  ###########################
+
+  programs.nix-ld.enable = true;
+
   programs.hyprland.enable = true;
+  stylix = {
+    enable = true;
+    #image = ../wallpapers/macos-monterey-wwdc-21-stock-dark-mode-5k-6016x6016-5585.jpg;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/onedark.yaml";
+    polarity = "dark";
+    targets.gtk.enable = true;
+  };
 
   # Fonts
   fonts.packages = with pkgs; [
     nerd-fonts.meslo-lg
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.fira-code
+    font-awesome
+    material-design-icons
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
