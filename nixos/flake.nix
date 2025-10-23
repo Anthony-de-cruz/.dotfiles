@@ -1,5 +1,5 @@
 {
-  description = "A very basic flake";
+  description = "NixOS configuration.";
 
   inputs = {
     nixpkgs = {

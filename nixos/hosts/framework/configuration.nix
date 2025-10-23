@@ -5,38 +5,42 @@
 { config, pkgs, inputs, ... }:
 
 {
+
+  ###########
+  ### NIX ###
+  ###########
+
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
-  # Nix
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Bootloader.
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "25.05"; # Did you read the comment?
+
+  ############
+  ### BOOT ###
+  ############
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.initrd.luks.devices."luks-3bdeb1de-0a64-47ac-b509-a5e1c4deb660".device = "/dev/disk/by-uuid/3bdeb1de-0a64-47ac-b509-a5e1c4deb660";
-  networking.hostName = "framework"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  ##############
+  ### LOCALE ###
+  ##############
 
-  # Enable networking.
-  networking.networkmanager.enable = true;
-
-  # Enable bluetooth.
-  hardware.bluetooth.enable = true;
-
-  # Set your time zone.
   time.timeZone = "Europe/London";
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_GB.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_GB.UTF-8";
     LC_IDENTIFICATION = "en_GB.UTF-8";
@@ -49,8 +53,30 @@
     LC_TIME = "en_GB.UTF-8";
   };
 
-  # Configure console keymap
   console.keyMap = "uk";
+
+  ################
+  ### SERVICES ###
+  ################
+
+  networking.hostName = "framework";
+  networking.networkmanager.enable = true;
+
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
+
+  # Enable the OpenSSH daemon.
+  # services.openssh.enable = true;
+
+  # Enable bluetooth.
+  hardware.bluetooth.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -94,12 +120,9 @@
     XDG_RUNTIME_DIR = "/run/user/1000"; 
   };
 
-  # Allow hyprland to handle laptop lid switch.
-  services.logind.settings.Login = {
-    HandleLidSwitch = "ignore";
-    HandleLidSwitchDocked = "ignore";
-    HandleLidSwitchExternalPower = "ignore";
-  };
+  #############
+  ### USERS ###
+  #############
 
   programs.zsh.enable = true;
 
@@ -118,10 +141,11 @@
     };
   };
 
-  nixpkgs.config.allowUnfree = true;
+  ################
+  ### PACKAGES ###
+  ################
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     ### CLI Utils ###
     wget
@@ -196,9 +220,10 @@
   ### DESKTOP ENVIRONMENT ###
   ###########################
 
-  programs.nix-ld.enable = true;
-
   programs.hyprland.enable = true;
+
+  # Stylix *may* require ld to link non native binaries.
+  #programs.nix-ld.enable = true;
   stylix = {
     enable = true;
     #image = ../wallpapers/macos-monterey-wwdc-21-stock-dark-mode-5k-6016x6016-5585.jpg;
@@ -216,31 +241,10 @@
     material-design-icons
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.05"; # Did you read the comment?
-
+  # Allow hyprland to handle laptop lid switch.
+  services.logind.settings.Login = {
+    HandleLidSwitch = "ignore";
+    HandleLidSwitchDocked = "ignore";
+    HandleLidSwitchExternalPower = "ignore";
+  };
 }
