@@ -132,6 +132,7 @@
     neovim
     tmux
     fzf
+    jq
     brightnessctl
     fastfetch
     # Music Player Daemon + Codecs
@@ -147,6 +148,7 @@
     cmake
     # Dotnet
     dotnetCorePackages.sdk_9_0-bin
+    dotnet-sdk_9
     roslyn-ls
     csharp-ls
     # Python
@@ -161,6 +163,7 @@
     gopls
     # Lua
     luajitPackages.lua-lsp
+    stylua
 
     ### Desktop GUI ###
     hyprland
