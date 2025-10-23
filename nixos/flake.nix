@@ -30,7 +30,7 @@
     nixosConfigurations.framework = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; }; # Pass args down to our modules.
         modules = [
-            ./configuration.nix
+            ./hosts/framework/configuration.nix
             inputs.home-manager.nixosModules.default
             inputs.stylix.nixosModules.stylix
         ];
