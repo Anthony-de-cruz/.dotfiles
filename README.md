@@ -5,8 +5,7 @@ Some of my .dotfile setup
 ### GIT
 
 ```sh
-mkdir ~/.config/git
-ln -s ~/.dotfiles/git/.gitconfig ~/.config/git/config
+mkdir ~/.config/git && ln -s ~/.dotfiles/git/.gitconfig ~/.config/git/config
 ```
 
 ### ZSH
@@ -43,11 +42,15 @@ exec zsh
 
 ### NVIM
 
-ln -s ~/.dotfiles/nvim ~/.config/nvim
+```sh
+ln -s ~/.dotfiles/nvim ~/.config
+```
 
 ### IDEAVIM
 
+```sh
 ln -s ~/.dotfiles/ideavim/.ideavimrc ~/.ideavimrc
+```
 
 ### TMUX
 
@@ -62,24 +65,42 @@ In tmux, run: `<leader> I`
 
 ### Zellij
 
-ln -s ~/.dotfiles/zellij/ ~/.config/zellij
+```sh
+ln -s ~/.dotfiles/zellij/ ~/.config
+```
 
 ### Spicetify
 
-ln -s ~/.dotfiles/spicetify/ ~/.config/spicetify
+```sh
+ln -s ~/.dotfiles/spicetify ~/.config
+```
 
 ### Kitty
 
-ln -s ~/.dotfiles/kitty/ ~/.config/
+```sh
+ln -s ~/.dotfiles/kitty ~/.config
+```
 
 ### Hypr
 
-ln -s ~/.dotfiles/hypr/ ~/.config/
+```sh
+ln -s ~/.dotfiles/hypr ~/.config
+```
 
 ### Waybar
 
-ln -s ~/.dotfiles/waybar/ ~/.config/
+```sh
+ln -s ~/.dotfiles/waybar ~/.config
+```
 
 ### Bat
 
-ln -s ~/.dotfiles/bat/ ~/.config/
+```sh
+ln -s ~/.dotfiles/bat ~/.config
+```
+
+### Rmpc
+
+```sh
+ln -s ~/.dotfiles/rmpc ~/.config
+```
