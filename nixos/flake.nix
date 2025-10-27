@@ -23,8 +23,8 @@
 
   outputs = { nixpkgs, ... } @ inputs:
   let
-    pkgs = nixpkgs.legacyPackages.x86_64-linux;
-    legacyPkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+    system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages."${system}";
   in
   {
     nixosConfigurations.framework = nixpkgs.lib.nixosSystem {
@@ -35,13 +35,5 @@
             inputs.stylix.nixosModules.stylix
         ];
     };
-
-    devShells.x86_64-linux.default = pkgs.mkShell {
-      shellHook = ''
-        $SHELL
-      '';
-      buildInputs = [ pkgs.zellij ]; # Install a specific package from a specific input
-    };
-
   };
 }
