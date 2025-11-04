@@ -12,7 +12,7 @@ if [ "$LID_STATE" == "closed" ]; then
     if [ -z "$EXTERNAL_DISPLAYS" ]; then
         systemctl suspend
     else
-        hyprctl dispatch moveworkspacetomonitor 1 DP-4 > /dev/null
+        hyprctl dispatch moveworkspacetomonitor 1 DP-3 > /dev/null
         hyprctl keyword monitor "$BUILTIN_DISPLAY, disable" > /dev/null
     fi
 else
