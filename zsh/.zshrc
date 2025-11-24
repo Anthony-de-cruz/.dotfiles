@@ -139,7 +139,10 @@ alias hf='cd "$(find ~ -type d -not -path "./.git/*" |
 alias pf='echo "$(find . -type d -not -path "./.git/*" |
     fzf --layout=reverse --info=inline)"' # path-find
 
-export VISUAL="/usr/bin/nvim"
+# Init zoxide
+eval "$(zoxide init zsh)"
+
+export VISUAL="nvim"
 export EDITOR="$VISUAL"
 
 #export PATH=${PATH}:`go env GOPATH`/bin
