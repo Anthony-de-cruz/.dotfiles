@@ -10,7 +10,7 @@ EXTERNAL_DISPLAYS=$(hyprctl monitors | grep "Monitor" | awk '{print $2}' | grep 
 
 if [ "$LID_STATE" == "closed" ]; then
     if [ -z "$EXTERNAL_DISPLAYS" ]; then
-        systemctl suspend
+        systemctl suspend-then-hibernate
     else
         hyprctl dispatch moveworkspacetomonitor 1 DP-3 > /dev/null
         hyprctl keyword monitor "$BUILTIN_DISPLAY, disable" > /dev/null
