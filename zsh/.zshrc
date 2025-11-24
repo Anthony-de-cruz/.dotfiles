@@ -95,11 +95,13 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
- if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vim'
- else
-   export EDITOR='nvim'
- fi
+if [[ -n $SSH_CONNECTION ]]; then
+    export VISUAL="vim"
+    export EDITOR="$VISUAL"
+else
+    export VISUAL="nvim"
+    export EDITOR="$VISUAL"
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -108,21 +110,11 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
-
-# eval $(thefuck --alias)
 
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH=$PATH:/usr/local/go/bin
+#export PATH=${PATH}:`go env GOPATH`/bin
 
 alias cls='clear'
 alias wipe='clear -x'
@@ -142,13 +134,7 @@ alias pf='echo "$(find . -type d -not -path "./.git/*" |
 # Init zoxide
 eval "$(zoxide init zsh)"
 
-export VISUAL="nvim"
-export EDITOR="$VISUAL"
-
-#export PATH=${PATH}:`go env GOPATH`/bin
-
-# Set up fzf key bindings and fuzzy completion
-# source <(fzf --zsh)
+export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 
 # To customize prompt, run `p10k configure` or edit ~/.dotfiles/zsh/.p10k.zsh.
 [[ ! -f ~/.dotfiles/zsh/.p10k.zsh ]] || source ~/.dotfiles/zsh/.p10k.zsh
