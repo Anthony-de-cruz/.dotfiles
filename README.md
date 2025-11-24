@@ -93,6 +93,12 @@ ln -s ~/.dotfiles/hypr ~/.config
 ln -s ~/.dotfiles/waybar ~/.config
 ```
 
+### Yazi
+
+```sh
+ln -s ~/.dotfiles/yazi ~/.config
+```
+
 ### Bat
 
 ```sh
