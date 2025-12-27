@@ -59,6 +59,9 @@
   ### SERVICES ###
   ################
 
+  # Firmware.
+  services.fwupd.enable = true;
+
   networking.hostName = "framework";
   networking.networkmanager.enable = true;
 
