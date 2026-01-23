@@ -103,18 +103,21 @@
   # Music Daemon
   services.mpd = {
     enable = true;
-    musicDirectory = "/home/anthonydecruz/Music";
     user = "anthonydecruz";
     dataDir = "/home/anthonydecruz/.config/mpd";
-    playlistDirectory = "/home/anthonydecruz/.config/mpd/playlists";
     startWhenNeeded = true;
-    extraConfig = ''
-      audio_output {
-        type "pipewire"
-        name "PipewireOutput"
-      }
-      restore_paused "yes"
-    '';
+
+    settings = {
+      music_directory = "/home/anthonydecruz/Music";
+      playlist_directory = "/home/anthonydecruz/.config/mpd/playlists";
+      restore_paused = true;
+      audio_output = [
+        {
+          type = "pipewire";
+          name = "PipewireOutput";
+        }
+      ];
+    };
   };
 
   # As a system level service, MPD doesn't know the user level socket by default.
@@ -154,61 +157,68 @@
     wget
     zsh
     git
-    lazygit
+    tmux
     vim
     neovim
-    tmux
+    lazygit # Git TUI
+    yazi # File Explorer TUI
+    poppler # Yazi PDF Preview
+    ffmpeg # Yazi Video Preview
+    jq # Yazi JSON Preview
+    ripgrep # Yazi File Search
+    fd # Yazi Directory Search
+    zoxide # Yazi Search History
     fzf
-    jq
     brightnessctl
     fastfetch
-    # Music Player Daemon + Codecs
-    mpd
-    mpc_cli
-    ffmpeg
-    flac
-    libvorbis
 
     ### Dev Tools ###
     # C
     gcc
     cmake
     # Dotnet
-    dotnetCorePackages.sdk_9_0-bin
-    dotnet-sdk_9
-    roslyn-ls
-    csharp-ls
+    # dotnetCorePackages.sdk_9_0-bin
+    # dotnet-sdk_9
+    # roslyn-ls
+    # csharp-ls
     # Python
     uv
+    ruff
+    python314
+    pyright
     # Zig
-    zig_0_13
+    zig
     zls
     # Rust
-    rustup
+    pkgs.rust-bin.stable.latest.default # Provided by rust-overlay
     # Go
     go
     gopls
     # Lua
     luajitPackages.lua-lsp
     stylua
+    # JS
+    nodejs_22
+
+    ### Virtualisation ###
+    quickemu
+    spice
 
     ### Desktop GUI ###
     hyprland
     hyprpaper # Wallpapers
     hyprshot # Screenshots
+    hypridle # Idle Daemon
     waybar # Desktop Bar
     wofi # Launcher
     mako # Notification Daemon
 
-    ### Desktop TUI ###
-    rmpc # Music player
-
     ### GUI Apps ###
     kitty
     ungoogled-chromium
-    inputs.zen-browser.packages."${system}".default
+    inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
     jetbrains.rider
-    jetbrains.pycharm-professional
+    jetbrains.pycharm
     obsidian # Note Taking
     nautilus # File Explorer
     loupe # Image Viewer
@@ -217,7 +227,20 @@
     snapshot # Camera Viewer
     gnome-calculator # Calculator
     overskride # Bluetooth Frontend
+    gimp
+    discord
+    spotify
+
+    ### Music ###
+    mpd
+    mpc
+    flac
+    libvorbis
+    rmpc # MPD TUI Client
   ];
+
+  # A number of programs depend on dynamic binary linking.
+  programs.nix-ld.enable = true;
 
   ###########################
   ### DESKTOP ENVIRONMENT ###
@@ -226,7 +249,6 @@
   programs.hyprland.enable = true;
 
   # Stylix *may* require ld to link non native binaries.
-  #programs.nix-ld.enable = true;
   stylix = {
     enable = true;
     #image = ../wallpapers/macos-monterey-wwdc-21-stock-dark-mode-5k-6016x6016-5585.jpg;
@@ -245,9 +267,15 @@
   ];
 
   # Allow hyprland to handle laptop lid switch.
-  services.logind.settings.Login = {
-    HandleLidSwitch = "ignore";
-    HandleLidSwitchDocked = "ignore";
-    HandleLidSwitchExternalPower = "ignore";
+  services.logind = {
+    settings.Login = {
+      HandleLidSwitch = "ignore";
+      HandleLidSwitchDocked = "ignore";
+      HandleLidSwitchExternalPower = "ignore";
+    };
   };
+
+  systemd.sleep.extraConfig = ''
+    HibernateDelaySec=1800
+  '';
 }
