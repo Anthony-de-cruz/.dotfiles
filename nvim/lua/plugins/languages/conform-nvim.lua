@@ -15,13 +15,13 @@ return {
 				java = { "clang-format" },
 				rust = { "rustfmt" },
 				go = { "gofmt", "goimports-revised", "golines", stop_after_first = false },
-				typescript = { { "prettierd", "prettier", stop_after_first = true } },
-				javascript = { { "prettierd", "prettier", stop_after_first = true } },
-				json = { { "prettierd", "prettier", stop_after_first = true } },
-				html = { { "prettierd", "prettier", stop_after_first = true } },
-				css = { { "prettierd", "prettier", stop_after_first = true } },
-				scss = { { "prettierd", "prettier", stop_after_first = true } },
-				markdown = { { "prettierd", "prettier", stop_after_first = true } },
+				typescript = { "prettierd", "prettier", stop_after_first = true },
+				javascript = { "prettierd", "prettier", stop_after_first = true },
+				json = { "prettierd", "prettier", stop_after_first = true },
+				html = { "prettierd", "prettier", stop_after_first = true },
+				css = { "prettierd", "prettier", stop_after_first = true },
+				scss = { "prettierd", "prettier", stop_after_first = true },
+				markdown = { "prettierd", "prettier", stop_after_first = true },
 			},
 			--format_on_save = {
 			--	-- These options will be passed to conform.format()
@@ -43,7 +43,7 @@ return {
 			},
 		}
 		vim.keymap.set("n", "<leader>f", function()
-			require("conform").format({ lsp_fallback = true })
+			require("conform").format({})
 		end, { noremap = true })
 	end,
 }

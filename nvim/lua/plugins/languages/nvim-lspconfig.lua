@@ -5,13 +5,14 @@ return {
 
 		-- Default Setups
 		local servers = {
-			-- "pyright",
+			"ruff",
+			"pyright",
 			-- "roslyn_ls",
 			-- "html",
 			-- "cssls",
 			-- "ts_ls",
 			-- "gopls",
-			-- "rust_analyzer",
+			"rust_analyzer",
 			-- "omnisharp",
 			-- "csharp_ls",
 			-- "zls",
@@ -29,7 +30,12 @@ return {
 		}
 		vim.lsp.enable("lua_ls")
 
-		-- vim.lsp.enable("clangd")
+		-- vim.lsp.config["pyright"] = {
+		-- 	capabilities = capabilities,
+		-- 	cmd = { "uvx", "pyright" },
+		-- }
+		-- vim.lsp.enable("pyright")
+
 		-- vim.lsp.config["clangd"] = {
 		-- 	capabilities = capabilities,
 		-- 	cmd = { "clangd", "--clang-tidy" },
