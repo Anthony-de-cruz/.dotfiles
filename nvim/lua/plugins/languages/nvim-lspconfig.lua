@@ -3,14 +3,14 @@ return {
 	config = function()
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-		-- Default Setups
+		-- default setups
 		local servers = {
 			"ruff",
 			"pyright",
 			-- "roslyn_ls",
 			-- "html",
 			-- "cssls",
-			-- "ts_ls",
+			"ts_ls",
 			-- "gopls",
 			"rust_analyzer",
 			-- "omnisharp",
@@ -21,9 +21,12 @@ return {
 		for _, lsp in ipairs(servers) do
 			vim.lsp.config[lsp] = { capabilities = capabilities }
 			vim.lsp.enable(lsp)
+
+			-- vim.lsp.config(lsp, { capabilities = capabilities })
+			-- vim.lsp.enable(lsp)
 		end
 
-		-- Custom Setups
+		-- custom setups
 		vim.lsp.config["lua_ls"] = {
 			capabilities = capabilities,
 			cmd = { "lua-lsp" },
@@ -45,10 +48,10 @@ return {
 		-- vim.lsp.config["roslyn_ls"] = {
 		-- 	capabilities = capabilities,
 		-- 	--cmd = {
-		-- 	--	"Microsoft.CodeAnalysis.LanguageServer",
-		-- 	--	"--logLevel",
-		-- 	--	"Information",
-		-- 	--	"--extensionLogDirectory",
+		-- 	--	"microsoft.codeanalysis.languageserver",
+		-- 	--	"--loglevel",
+		-- 	--	"information",
+		-- 	--	"--extensionlogdirectory",
 		-- 	--	"/home/anthonydecruz/temp",
 		-- 	--},
 		-- 	--filetypes = { "cs", "fsharp" },
