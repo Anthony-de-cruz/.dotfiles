@@ -1,10 +1,13 @@
 " SETTINGS
 set clipboard=unnamed,unnamed plus
-set clipboard+=idea-put
+"set clipboard+=idea-put
 set scrolloff=8
+set number
+set relativenumber
+
 set incsearch
 
-
+set ideaput=replace " Replace selected block on put
 set ideajoin " Lets you join together lines
 set ideastatusicon=gray " Makes the icon in the bar less distracting
 
