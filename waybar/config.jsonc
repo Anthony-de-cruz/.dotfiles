@@ -1,11 +1,11 @@
 // -*- mode: jsonc -*-
 {
-  // "layer": "top", // Waybar at top layer
-  // "position": "bottom", // Waybar position (top|bottom|left|right)
+  /// Module layout ///
+  "layer": "top",
+  "position": "top",
   "height": 30, // Waybar height (to be removed for auto height)
   // "width": 1280, // Waybar width
   "spacing": 4, // Gaps between modules (4px)
-  // Choose the order of the modules
   "modules-left": [
       "hyprland/workspaces",
       "mpd",
@@ -14,36 +14,13 @@
       "clock"
   ],
   "modules-right": [
-    //"idle_inhibitor",
     "pulseaudio",
     "bluetooth",
     "network",
-    "power-profiles-daemon",
-    //"cpu",
-    //"memory",
-    //"temperature",
-    //"backlight",
-    "sway/language",
-    "battery",
-    "tray",
+    //"power-profiles-daemon",
+    "battery"
   ],
-  // Modules configuration
-  // "sway/workspaces": {
-  //     "disable-scroll": true,
-  //     "all-outputs": true,
-  //     "warp-on-scroll": false,
-  //     "format": "{name}: {icon}",
-  //     "format-icons": {
-  //         "1": "",
-  //         "2": "",
-  //         "3": "",
-  //         "4": "",
-  //         "5": "",
-  //         "urgent": "",
-  //         "focused": "",
-  //         "default": ""
-  //     }
-  // },
+  /// Module configuration ///
   "keyboard-state": {
     "numlock": true,
     "capslock": true,
@@ -53,18 +30,11 @@
       "unlocked": "",
     },
   },
-  "sway/mode": {
-    "format": "<span style=\"italic\">{}</span>",
-  },
-  "sway/scratchpad": {
-    "format": "{icon} {count}",
-    "show-empty": false,
-    "format-icons": ["", ""],
-    "tooltip": true,
-    "tooltip-format": "{app}: {title}",
-  },
   "bluetooth": {
-    "format": " {status}",
+    "format": "",
+    "format-on": "",
+    "format-off": "<span color='#64727d'></span>",
+    "format-no-controller": "<span color='#64727d'>?</span>",
     "format-connected": "{device_alias}",
     "format-connected-battery": "{device_alias} {device_battery_percentage}%",
     "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
@@ -74,8 +44,7 @@
     "on-click": "overskride",
   },
   "mpd": {
-    //"format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{artist:.30} - {title:.30} {elapsedTime:%M:%S}/{totalTime:%M:%S} @ {volume}%",
+    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{artist:.30} - {title:.30} {elapsedTime:%M:%S}/{totalTime:%M:%S} {volume}%",
     "format-disconnected": "Disconnected ",
     "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}Stopped ",
     "unknown-tag": "N/A",
@@ -84,7 +53,6 @@
       "on": " ",
     },
     "random-icons": {
-      /*"off": "<span color=\"#f53c3c\"></span> ",*/
       "on": " ",
     },
     "repeat-icons": {
@@ -101,21 +69,30 @@
     "tooltip-format-disconnected": "MPD (disconnected)",
     "on-click": "kitty rmpc",
   },
-  "idle_inhibitor": {
-    "format": "{icon}",
-    "format-icons": {
-      "activated": "",
-      "deactivated": "",
-    },
-  },
-  "tray": {
-    // "icon-size": 21,
-    "spacing": 10,
-  },
   "clock": {
-    // "timezone": "America/New_York",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format-alt": "{:%Y-%m-%d}",
+      "format": "{:%R}",
+      "format-alt": "{:%R - %A, %B %d}",
+      "tooltip-format": "<tt><small>{calendar}</small></tt>",
+      "calendar": {
+                  "mode"          : "month",
+                  "mode-mon-col"  : 3,
+                  "weeks-pos"     : "right",
+                  "on-scroll"     : 1,
+                  "format": {
+                            "days":       "<span color='#64727d'>{}</span>",
+                            "months":     "<span color='#ffffff'>{}</span>",
+                            "weeks":      "<span color='#64727d'>{}</span>",
+                            "weekdays":   "<span color='#ffffff'>{}</span>",
+                            "today":      "<span color='#ffffff'>{}</span>"
+                            }
+                  },
+      "actions":  {
+                  "on-click-right": "mode",
+                  "on-scroll-up": "tz_up",
+                  "on-scroll-down": "tz_down",
+                  "on-scroll-up": "shift_up",
+                  "on-scroll-down": "shift_down"
+                  }
   },
   "cpu": {
     "format": "{usage}% ",
@@ -168,13 +145,14 @@
   },
   "network": {
     // "interface": "wlp2*", // (Optional) To force the use of this interface
-    "format-wifi": "{essid} {signalStrength}% ",
+    //"format-wifi": "{essid} {signaldBm}dBm/{signalStrength}% ",
+    "format-wifi": "", // network mod's signalStrength % calculation is bad.
     "format-ethernet": "{ipaddr}/{cidr} ",
     "tooltip-format": "{ifname} via {gwaddr} ",
     "format-linked": "{ifname} (No IP) ",
-    "format-disconnected": "Disconnected 󰖪",
-    "format-alt": "{ifname}: {ipaddr}/{cidr}",
-    "on-click": "kitty nmtui",
+    //"format-disconnected": "󰣺",
+    "format-disconnected": "󰖪",
+    "on-click": "kitty wifitui",
   },
   "pulseaudio": {
     // "scroll-step": 1, // %, can be a float
