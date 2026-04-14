@@ -173,6 +173,7 @@
     fastfetch
 
     ### Dev Tools ###
+    opencode
     # C
     gcc
     cmake
