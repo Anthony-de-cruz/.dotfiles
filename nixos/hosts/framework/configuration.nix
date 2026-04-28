@@ -197,7 +197,6 @@
     spice
 
     ### DESKTOP ENVIRONMENT ###
-    hyprland
     hyprpaper # Wallpapers
     hyprshot # Screenshots
     hypridle # Idle Daemon
@@ -285,6 +284,8 @@
   ### DESKTOP ENVIRONMENT ###
   ###########################
 
+  programs.hyprland.enable = true;
+
   # Stylix *may* require ld to link non native binaries.
   stylix = {
     enable = true;
@@ -326,9 +327,9 @@
     };
   };
 
-  ##############
-  ### POLKIT ###
-  ##############
+  ####################
+  ### POLKIT / XDG ###
+  ####################
 
   security.polkit.enable = true;
 
@@ -341,5 +342,13 @@
       ExecStart = "${pkgs.lxqt.lxqt-policykit}/bin/lxqt-policykit-agent";
       Restart   = "on-failure";
     };
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gtk
+    ];
   };
 }
