@@ -30,11 +30,11 @@ vim.keymap.set("n", "<leader>d", '"_d')
 vim.keymap.set("v", "<leader>d", '"_d')
 
 -- LSP
-vim.keymap.set("n", "K", vim.lsp.buf.hover, { noremap = true })
-vim.keymap.set("n", "gd", vim.lsp.buf.definition, { noremap = true })
-vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { noremap = true })
-vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { noremap = true })
-vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { noremap = true })
+vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover docs" })
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
+vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
+vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol" })
 
 -- Diagnostics
-vim.keymap.set('n', '<leader>do', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>do", vim.diagnostic.open_float, { desc = "Open diagnostics float" })
