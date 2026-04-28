@@ -80,7 +80,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
 	sudo # Easily prefix your current or previous commands with sudo by pressing esc twice.
 	dirhistory # This plugin adds keyboard shortcuts for navigating directory history and hierarchy.
-	git
 	zsh-autosuggestions
     zsh-syntax-highlighting
 )
@@ -117,7 +116,6 @@ export PATH=$PATH:/usr/local/go/bin
 #export PATH=${PATH}:`go env GOPATH`/bin
 
 alias cls='clear'
-alias wipe='clear -x'
 alias nv='nvim'
 alias lg='lazygit'
 alias quit='exit'
