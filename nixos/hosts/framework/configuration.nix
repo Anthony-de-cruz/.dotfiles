@@ -15,7 +15,10 @@
       ./hardware-configuration.nix
     ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    auto-optimise-store = true;
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -33,6 +36,8 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.initrd.luks.devices."luks-3bdeb1de-0a64-47ac-b509-a5e1c4deb660".device = "/dev/disk/by-uuid/3bdeb1de-0a64-47ac-b509-a5e1c4deb660";
+
+  boot.kernelModules = [ "tun" ]; # For networking.
 
   ##############
   ### LOCALE ###
@@ -55,19 +60,12 @@
 
   console.keyMap = "uk";
 
-  ################
-  ### SERVICES ###
-  ################
-
-  # Firmware.
-  services.fwupd.enable = true;
+  ##################
+  ### NETWORKING ###
+  ##################
 
   networking.hostName = "framework";
   networking.networkmanager.enable = true;
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -75,14 +73,25 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+  ################
+  ### SERVICES ###
+  ################
+
+  # Firmware.
+  services.fwupd.enable = true;
 
   # Enable bluetooth.
   hardware.bluetooth.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+
+  # Enable writing to devices.
+  services.udisks2.enable = true;
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -126,6 +135,120 @@
     XDG_RUNTIME_DIR = "/run/user/1000"; 
   };
 
+  ################
+  ### PACKAGES ###
+  ################
+
+  nixpkgs.config.allowUnfree = true;
+  environment.systemPackages = with pkgs; [
+    ### CLI UTILS ###
+    zsh
+    tmux
+    btop
+    fzf
+    yazi # File Explorer TUI
+    poppler # Yazi PDF Preview
+    jq # Yazi JSON Preview
+    ripgrep # Yazi File Search
+    fd # Yazi Directory Search
+    zoxide # Yazi Search History
+    fastfetch # Ofc
+
+    ### NETWORKING ###
+    wifitui
+    bluetui
+    nmap
+    wget
+    curl
+    tcpdump
+    nftables
+    conntrack-tools
+    dnsmasq
+
+    ### DEV TOOLS ###
+    # CLI Editor
+    vim
+    neovim
+    tree-sitter
+    # VCS
+    git
+    lazygit
+    # AI
+    opencode
+    codex
+    # C/C++
+    gcc
+    gnumake
+    cmake
+    # Python
+    uv
+    ruff
+    python314
+    pyright
+    # Lua
+    luajitPackages.lua-lsp
+    stylua
+    # JS
+    nodejs_22
+    prettierd
+
+    ### VIRTUALISATION ###
+    quickemu
+    spice
+
+    ### DESKTOP ENVIRONMENT ###
+    hyprland
+    hyprpaper # Wallpapers
+    hyprshot # Screenshots
+    hypridle # Idle Daemon
+    hyprlock # Lock Screen
+    waybar # Desktop Bar
+    wofi # Launcher
+    mako # Notification Daemon
+    kitty # Terminal
+    lxqt.lxqt-policykit # Polkit GUI
+    brightnessctl
+
+    ### DESKTOP APPS ###
+    inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
+    ungoogled-chromium
+    obsidian # Note Taking
+    nautilus # File Explorer
+    loupe # Image Viewer
+    simple-scan # Document Scanner
+    evince # Document Viewer
+    snapshot # Camera Viewer
+    gnome-calculator # Calculator
+    gimp
+    discord
+    spotify
+    libreoffice-qt-fresh
+    signal-desktop
+    rpi-imager
+    steam
+
+    ### GUI EDITORS ###
+    vscode
+    jetbrains.datagrip
+    jetbrains.rider
+    jetbrains.rust-rover
+    #jetbrains.pycharm
+    unityhub
+
+    ### MUSIC ###
+    mpd
+    mpc
+    rmpc
+
+    ### MEDIA CODECS ###
+    ffmpeg
+    flac
+    libvorbis
+  ];
+
+  # A number of programs depend on dynamic binary linking.
+  programs.nix-ld.enable = true;
+
   #############
   ### USERS ###
   #############
@@ -136,7 +259,7 @@
   users.users."anthonydecruz" = {
     isNormalUser = true;
     description = "Anthony de Cruz";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "kvm" "docker" ];
     shell = pkgs.zsh;
   };
 
@@ -147,115 +270,28 @@
     };
   };
 
-  ################
-  ### PACKAGES ###
-  ################
+  ######################
+  ### VIRTUALISATION ###
+  ######################
 
-  nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs; [
-    ### CLI Utils ###
-    wget
-    zsh
-    git
-    tmux
-    vim
-    neovim
-    lazygit # Git TUI
-    yazi # File Explorer TUI
-    poppler # Yazi PDF Preview
-    ffmpeg # Yazi Video Preview
-    jq # Yazi JSON Preview
-    ripgrep # Yazi File Search
-    fd # Yazi Directory Search
-    zoxide # Yazi Search History
-    fzf
-    brightnessctl
-    fastfetch
+  virtualisation.docker.enable = true;
 
-    ### Dev Tools ###
-    opencode
-    # C
-    gcc
-    cmake
-    # Dotnet
-    # dotnetCorePackages.sdk_9_0-bin
-    # dotnet-sdk_9
-    # roslyn-ls
-    # csharp-ls
-    # Python
-    uv
-    ruff
-    python314
-    pyright
-    # Zig
-    zig
-    zls
-    # Rust
-    pkgs.rust-bin.stable.latest.default # Provided by rust-overlay
-    # Go
-    go
-    gopls
-    # Lua
-    luajitPackages.lua-lsp
-    stylua
-    # JS
-    nodejs_22
-
-    ### Virtualisation ###
-    quickemu
-    spice
-
-    ### Desktop GUI ###
-    hyprland
-    hyprpaper # Wallpapers
-    hyprshot # Screenshots
-    hypridle # Idle Daemon
-    waybar # Desktop Bar
-    wofi # Launcher
-    mako # Notification Daemon
-
-    ### GUI Apps ###
-    kitty
-    ungoogled-chromium
-    inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
-    jetbrains.rider
-    jetbrains.pycharm
-    obsidian # Note Taking
-    nautilus # File Explorer
-    loupe # Image Viewer
-    simple-scan # Document Scanner
-    evince # Document Viewer
-    snapshot # Camera Viewer
-    gnome-calculator # Calculator
-    overskride # Bluetooth Frontend
-    gimp
-    discord
-    spotify
-
-    ### Music ###
-    mpd
-    mpc
-    flac
-    libvorbis
-    rmpc # MPD TUI Client
-  ];
-
-  # A number of programs depend on dynamic binary linking.
-  programs.nix-ld.enable = true;
+  virtualisation.libvirtd = {
+    enable = true;
+    allowedBridges = [ "br-5g" ]; # For a project.
+  };
 
   ###########################
   ### DESKTOP ENVIRONMENT ###
   ###########################
 
-  programs.hyprland.enable = true;
-
   # Stylix *may* require ld to link non native binaries.
   stylix = {
     enable = true;
     #image = ../wallpapers/macos-monterey-wwdc-21-stock-dark-mode-5k-6016x6016-5585.jpg;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/onedark.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
     polarity = "dark";
-    targets.gtk.enable = true;
+    targets.gtk.enable = true; # Triggers warning.
   };
 
   # Fonts
@@ -276,7 +312,34 @@
     };
   };
 
-  systemd.sleep.extraConfig = ''
-    HibernateDelaySec=1800
-  '';
+  systemd.sleep.settings.Sleep = {
+    HibernateDelaySec = "30m";
+  };
+
+  # Rebind keys.
+  services.keyd = {
+    enable = true;
+    keyboards.default.settings = {
+      main = {
+        capslock = "esc";
+      };
+    };
+  };
+
+  ##############
+  ### POLKIT ###
+  ##############
+
+  security.polkit.enable = true;
+
+  systemd.user.services.polkit-lxqt-agent = {
+    description = "LXQt Polkit Agent";
+    wantedBy = [ "graphical-session.target" ];
+    after    = [ "graphical-session.target" ];
+    serviceConfig = {
+      Type      = "simple";
+      ExecStart = "${pkgs.lxqt.lxqt-policykit}/bin/lxqt-policykit-agent";
+      Restart   = "on-failure";
+    };
+  };
 }

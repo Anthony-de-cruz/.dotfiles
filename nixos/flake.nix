@@ -3,6 +3,7 @@
   inputs = {
     nixpkgs = {
       url = "github:nixos/nixpkgs?ref=nixos-unstable";
+      #url = "github:nixos/nixpkgs?ref=nixos-25.11";
     };
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -12,16 +13,12 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { nixpkgs, rust-overlay, ... } @ inputs:
+  outputs = { nixpkgs, ... } @ inputs:
   let
     system = "x86_64-linux";
   in
@@ -30,15 +27,9 @@
         inherit system;
         specialArgs = { inherit inputs; }; # Pass this down to our modules.
         modules = [
-            {
-              nixpkgs = {
-                overlays = [ rust-overlay.overlays.default ];
-                config.allowUnfree = true;
-              };
-            }
-            ./hosts/framework/configuration.nix
             inputs.home-manager.nixosModules.default
             inputs.stylix.nixosModules.stylix
+            ./hosts/framework/configuration.nix
         ];
     };
   };
