@@ -17,8 +17,8 @@
     "pulseaudio",
     "bluetooth",
     "network",
-    //"power-profiles-daemon",
     "battery"
+    //"power-profiles-daemon",
   ],
   /// Module configuration ///
   "keyboard-state": {
@@ -41,7 +41,7 @@
     "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
     "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
-    "on-click": "overskride",
+    "on-click": "kitty bluetui",
   },
   "mpd": {
     "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{artist:.30} - {title:.30} {elapsedTime:%M:%S}/{totalTime:%M:%S} {volume}%",
@@ -124,7 +124,7 @@
     "format-full": "{capacity}% ",
     "format-charging": "{capacity}% ",
     "format-plugged": "{capacity}% ",
-    "format-alt": "{time} {icon}",
+    "format-alt": "{capacity}% ({time}) {icon}",
     // "format-good": "", // An empty format will hide the module
     // "format-full": "",
     "format-icons": ["", "", "", "", ""],
@@ -147,8 +147,8 @@
     // "interface": "wlp2*", // (Optional) To force the use of this interface
     //"format-wifi": "{essid} {signaldBm}dBm/{signalStrength}% ",
     "format-wifi": "", // network mod's signalStrength % calculation is bad.
-    "format-ethernet": "{ipaddr}/{cidr} ",
-    "tooltip-format": "{ifname} via {gwaddr} ",
+    "format-ethernet": "",
+    "tooltip-format": "{ipaddr}/{cidr} - {ifname} - {gwaddr} ",
     "format-linked": "{ifname} (No IP) ",
     //"format-disconnected": "󰣺",
     "format-disconnected": "󰖪",
