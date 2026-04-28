@@ -34,8 +34,10 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  boot.initrd.luks.devices."luks-3bdeb1de-0a64-47ac-b509-a5e1c4deb660".device = "/dev/disk/by-uuid/3bdeb1de-0a64-47ac-b509-a5e1c4deb660";
+  boot.loader.systemd-boot = {
+    consoleMode = "auto";
+    editor = false;
+  };
 
   boot.kernelModules = [ "tun" ]; # For networking.
 
@@ -185,6 +187,8 @@
     ruff
     python314
     pyright
+    # Rust
+    rustup
     # Lua
     luajitPackages.lua-lsp
     stylua
