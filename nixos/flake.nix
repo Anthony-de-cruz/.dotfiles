@@ -18,19 +18,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { nixpkgs, ... } @ inputs:
-  let
-    system = "x86_64-linux";
-  in
-  {
-    nixosConfigurations.framework = nixpkgs.lib.nixosSystem {
+  outputs =
+    { nixpkgs, ... }@inputs:
+    let
+      system = "x86_64-linux";
+    in
+    {
+      nixosConfigurations.framework = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = { inherit inputs; }; # Pass this down to our modules.
         modules = [
-            inputs.home-manager.nixosModules.default
-            inputs.stylix.nixosModules.stylix
-            ./hosts/framework/configuration.nix
+          inputs.home-manager.nixosModules.default
+          inputs.stylix.nixosModules.stylix
+          ./hosts/framework/configuration.nix
         ];
+      };
     };
-  };
 }

@@ -2,7 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
 
@@ -10,13 +15,16 @@
   ### NIX ###
   ###########
 
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
     auto-optimise-store = true;
   };
 
@@ -134,7 +142,7 @@
   # As a system level service, MPD doesn't know the user level socket by default.
   systemd.services.mpd.environment = {
     # Update with your UID, it might change in multiuser systems.
-    XDG_RUNTIME_DIR = "/run/user/1000"; 
+    XDG_RUNTIME_DIR = "/run/user/1000";
   };
 
   ################
@@ -262,7 +270,13 @@
   users.users."anthonydecruz" = {
     isNormalUser = true;
     description = "Anthony de Cruz";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "kvm" "docker" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "libvirtd"
+      "kvm"
+      "docker"
+    ];
     shell = pkgs.zsh;
   };
 
@@ -340,11 +354,11 @@
   systemd.user.services.polkit-lxqt-agent = {
     description = "LXQt Polkit Agent";
     wantedBy = [ "graphical-session.target" ];
-    after    = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
     serviceConfig = {
-      Type      = "simple";
+      Type = "simple";
       ExecStart = "${pkgs.lxqt.lxqt-policykit}/bin/lxqt-policykit-agent";
-      Restart   = "on-failure";
+      Restart = "on-failure";
     };
   };
 
