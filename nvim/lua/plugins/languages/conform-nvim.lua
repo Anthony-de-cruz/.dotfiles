@@ -14,6 +14,7 @@ return {
 				python = { "black" },
 				java = { "clang-format" },
 				rust = { "rustfmt" },
+                nix = { "nixfmt" },
 				go = { "gofmt", "goimports-revised", "golines", stop_after_first = false },
 				typescript = { "prettierd", "prettier", stop_after_first = true },
 				javascript = { "prettierd", "prettier", stop_after_first = true },
