@@ -32,6 +32,11 @@
     "enable_preview_from_project_panel": true,
     "enable_keep_preview_on_code_navigation": false
   },
+  "file_finder": {
+    "file_icons": true,
+    "modal_max_width": "large",
+    "skip_focus_for_active_in_search": false,
+  },
   "tabs": {
     "show_close_button": "hover",
     "show_diagnostics": "all",
@@ -39,7 +44,7 @@
     "git_status": true
   },
   "tab_bar": {
-    "show": false
+    "show": true
   },
   "diff_view_style": "split",
   "agent": {
@@ -109,6 +114,7 @@
     "file_icons": true,
     "entry_spacing": "standard",
     "hide_gitignore": false,
+    "starts_open": false,
     "button": true,
   },
   "relative_line_numbers": "enabled",

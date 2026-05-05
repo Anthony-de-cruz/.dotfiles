@@ -13,6 +13,46 @@
     },
   },
   {
+    "context": "Editor && mode == full && vim_mode == normal",
+    "bindings": {
+      "space p f": "file_finder::Toggle",
+      "space p o": "projects::OpenRecent",
+      "space p s": "pane::DeploySearch",
+      "space p v": "project_panel::Toggle",
+      "space q": [
+        "action::Sequence",
+        ["pane::CloseCleanItems", "pane::CloseActiveItem"],
+      ],
+    },
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "space p o": "projects::OpenRecent",
+      "space p s": "pane::DeploySearch",
+      "space p v": "project_panel::Toggle",
+      "escape": "project_panel::Toggle",
+    },
+  },
+  {
+    "context": "ProjectSearchBar > Editor",
+    "bindings": {
+      "escape": "pane::CloseActiveItem",
+    },
+  },
+  {
+    "context": "ProjectSearchView > Editor",
+    "bindings": {
+      "escape": "pane::CloseActiveItem",
+    },
+  },
+  {
+    "context": "ProjectSearchBar || ProjectSearchView",
+    "bindings": {
+      "escape": "pane::CloseActiveItem",
+    },
+  },
+  {
     "context": "Editor && vim_mode == insert",
     "bindings": {
       // "j k": "vim::NormalBefore"
@@ -20,7 +60,7 @@
   },
   {
     "unbind": {
-      "ctrl-q": "zed::Quit"
-    }
-  }
+      "ctrl-q": "zed::Quit",
+    },
+  },
 ]
