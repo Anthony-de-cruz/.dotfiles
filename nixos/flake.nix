@@ -26,7 +26,7 @@
     {
       nixosConfigurations.framework = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit inputs; }; # Pass this down to our modules.
+        specialArgs = { inherit inputs; }; # Pass input flakes down to all modules.
         modules = [
           inputs.home-manager.nixosModules.default
           inputs.stylix.nixosModules.stylix

@@ -176,16 +176,14 @@
     dnsmasq
 
     ### DEV TOOLS ###
-    # CLI Editor
-    vim
-    neovim
-    tree-sitter
     # VCS
     git
     lazygit
     # AI
     opencode
     codex
+    # Nix
+    nixd
     # C/C++
     gcc
     gnumake
@@ -203,10 +201,6 @@
     # JS
     nodejs_22
     prettierd
-
-    ### VIRTUALISATION ###
-    quickemu
-    spice
 
     ### DESKTOP ENVIRONMENT ###
     hyprpaper # Wallpapers
@@ -234,17 +228,26 @@
     discord
     spotify
     libreoffice-qt-fresh
-    signal-desktop
-    rpi-imager
+    #signal-desktop
     steam
 
-    ### GUI EDITORS ###
-    vscode
+    ### EDITORS ###
+    # CLI
+    vim
+    neovim
+    tree-sitter
+    # GUI
+    #vscode
+    zed-editor
     jetbrains.datagrip
-    jetbrains.rider
     jetbrains.rust-rover
+    #jetbrains.rider
     #jetbrains.pycharm
-    unityhub
+    #unityhub
+
+    ### VIRTUALISATION ###
+    quickemu
+    spice
 
     ### MUSIC ###
     mpd
@@ -307,10 +310,9 @@
   # Stylix *may* require ld to link non native binaries.
   stylix = {
     enable = true;
-    #image = ../wallpapers/macos-monterey-wwdc-21-stock-dark-mode-5k-6016x6016-5585.jpg;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
     polarity = "dark";
-    targets.gtk.enable = true; # Triggers warning.
+    targets.gtk.enable = true;
   };
 
   # Fonts
