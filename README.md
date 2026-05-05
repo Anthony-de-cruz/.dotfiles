@@ -110,3 +110,9 @@ ln -s ~/.dotfiles/bat ~/.config
 ```sh
 ln -s ~/.dotfiles/rmpc ~/.config
 ```
+
+### Zed
+```sh
+ln -s ~/.dotfiles/zed ~/.config
+```
+
