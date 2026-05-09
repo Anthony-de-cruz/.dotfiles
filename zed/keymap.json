@@ -6,61 +6,106 @@
 // To see the default key bindings run `zed: open default keymap`
 // from the command palette.
 [
-  {
-    "context": "Workspace",
-    "bindings": {
-      // "shift shift": "file_finder::Toggle"
+    {
+        "context": "Workspace",
+        "bindings": {
+            // "shift shift": "file_finder::Toggle"
+        },
     },
-  },
-  {
-    "context": "Editor && mode == full && vim_mode == normal",
-    "bindings": {
-      "space p f": "file_finder::Toggle",
-      "space p o": "projects::OpenRecent",
-      "space p s": "pane::DeploySearch",
-      "space p v": "project_panel::Toggle",
-      "space q": [
-        "action::Sequence",
-        ["pane::CloseCleanItems", "pane::CloseActiveItem"],
-      ],
+    {
+        "context": "Editor && mode == full && vim_mode == normal",
+        "bindings": {
+            "ctrl-d": [
+                "action::Sequence",
+                ["vim::ScrollDown", "editor::ScrollCursorCenter"],
+            ],
+            "ctrl-u": [
+                "action::Sequence",
+                ["vim::ScrollUp", "editor::ScrollCursorCenter"],
+            ],
+            "n": [
+                "action::Sequence",
+                ["vim::MoveToNext", "editor::ScrollCursorCenter"],
+            ],
+            "shift-n": [
+                "action::Sequence",
+                ["vim::MoveToPrevious", "editor::ScrollCursorCenter"],
+            ],
+            "shift-k": "editor::Hover",
+            "g d": "editor::GoToDefinition",
+            "g shift-d": "editor::GoToDeclaration",
+            "ctrl-h": "workspace::ActivatePaneLeft",
+            "ctrl-j": "workspace::ActivatePaneDown",
+            "ctrl-k": "workspace::ActivatePaneUp",
+            "ctrl-l": "workspace::ActivatePaneRight",
+            "space c a": "editor::ToggleCodeActions",
+            "space d o": "diagnostics::DeployCurrentFile",
+            "space f": "editor::Format",
+            "space g b": "editor::ToggleGitBlameInline",
+            "space g h": "editor::ToggleSelectedDiffHunks",
+            "space p f": "file_finder::Toggle",
+            "space p o": "projects::OpenRecent",
+            "space p s": "pane::DeploySearch",
+            "space p v": "project_panel::Toggle",
+            "space q": [
+                "action::Sequence",
+                ["pane::CloseCleanItems", "pane::CloseActiveItem"],
+            ],
+            "space r n": "editor::Rename",
+        },
     },
-  },
-  {
-    "context": "ProjectPanel && not_editing",
-    "bindings": {
-      "space p o": "projects::OpenRecent",
-      "space p s": "pane::DeploySearch",
-      "space p v": "project_panel::Toggle",
-      "escape": "project_panel::Toggle",
+    {
+        "context": "Editor && mode == full && vim_mode == visual",
+        "bindings": {
+            "ctrl-h": "workspace::ActivatePaneLeft",
+            "ctrl-j": "workspace::ActivatePaneDown",
+            "ctrl-k": "workspace::ActivatePaneUp",
+            "ctrl-l": "workspace::ActivatePaneRight",
+            "space c a": "editor::ToggleCodeActions",
+            "space d": "editor::Delete",
+            "space d o": "diagnostics::DeployCurrentFile",
+            "space f": "editor::FormatSelections",
+            "space g h": "editor::ToggleSelectedDiffHunks",
+            "space p": "editor::Paste",
+            "space y": "editor::Copy",
+        },
     },
-  },
-  {
-    "context": "ProjectSearchBar > Editor",
-    "bindings": {
-      "escape": "pane::CloseActiveItem",
+    {
+        "context": "ProjectPanel && not_editing",
+        "bindings": {
+            "space p o": "projects::OpenRecent",
+            "space p s": "pane::DeploySearch",
+            "space p v": "project_panel::Toggle",
+            "escape": "project_panel::Toggle",
+        },
     },
-  },
-  {
-    "context": "ProjectSearchView > Editor",
-    "bindings": {
-      "escape": "pane::CloseActiveItem",
+    {
+        "context": "ProjectSearchBar > Editor",
+        "bindings": {
+            "escape": "pane::CloseActiveItem",
+        },
     },
-  },
-  {
-    "context": "ProjectSearchBar || ProjectSearchView",
-    "bindings": {
-      "escape": "pane::CloseActiveItem",
+    {
+        "context": "ProjectSearchView > Editor",
+        "bindings": {
+            "escape": "pane::CloseActiveItem",
+        },
     },
-  },
-  {
-    "context": "Editor && vim_mode == insert",
-    "bindings": {
-      // "j k": "vim::NormalBefore"
+    {
+        "context": "ProjectSearchBar || ProjectSearchView",
+        "bindings": {
+            "escape": "pane::CloseActiveItem",
+        },
     },
-  },
-  {
-    "unbind": {
-      "ctrl-q": "zed::Quit",
+    {
+        "context": "Editor && vim_mode == insert",
+        "bindings": {
+            // "j k": "vim::NormalBefore"
+        },
     },
-  },
+    {
+        "unbind": {
+            "ctrl-q": "zed::Quit",
+        },
+    },
 ]
