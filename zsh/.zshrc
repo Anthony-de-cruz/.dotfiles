@@ -67,7 +67,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -130,7 +130,8 @@ alias pf='echo "$(find . -type d -not -path "./.git/*" |
     fzf --layout=reverse --info=inline)"' # path-find
 
 # Init zoxide
-eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh)" # Init zoxide
+eval "$(direnv hook zsh)" # Hook direnv 
 
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 
