@@ -1,11 +1,14 @@
 " SETTINGS
-set clipboard=unnamed,unnamed plus
+set clipboard=unnamed,unnamedplus,ideaput
 "set clipboard+=idea-put
 set scrolloff=8
 set number
 set relativenumber
 
 set incsearch
+set ignorecase
+set smartcase
+set hlsearch
 
 set ideaput=replace " Replace selected block on put
 set ideajoin " Lets you join together lines
