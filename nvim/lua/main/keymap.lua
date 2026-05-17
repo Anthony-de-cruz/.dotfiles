@@ -17,11 +17,6 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz") -- Up
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
--- Leader for system clipboard
-vim.keymap.set("n", "<leader>Y", '"+Y')
-vim.keymap.set("v", "<leader>y", '"+y')
-vim.keymap.set("n", "<leader>y", '"+y')
-
 -- Don't copy when pasting over
 vim.keymap.set("x", "<leader>p", '"_dP')
 
