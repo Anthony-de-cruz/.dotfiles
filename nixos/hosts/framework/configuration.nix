@@ -225,11 +225,11 @@
     snapshot # Camera Viewer
     gnome-calculator # Calculator
     gimp
-    discord
     spotify
-    libreoffice-qt-fresh
-    #signal-desktop
     steam
+    #discord
+    #libreoffice-qt-fresh
+    #signal-desktop
 
     ### EDITORS ###
     # CLI
@@ -239,11 +239,11 @@
     # GUI
     #vscode
     zed-editor
-    jetbrains.datagrip
-    jetbrains.rust-rover
-    #jetbrains.rider
     #jetbrains.pycharm
-    #unityhub
+    #jetbrains.datagrip
+    jetbrains.rust-rover
+    jetbrains.rider
+    unityhub
 
     ### VIRTUALISATION ###
     quickemu
@@ -260,6 +260,7 @@
     libvorbis
   ];
 
+  programs.nix-ld.enable = true;
   programs.direnv.enable = true;
 
   #############
