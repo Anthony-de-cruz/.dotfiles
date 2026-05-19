@@ -230,6 +230,7 @@
     #discord
     #libreoffice-qt-fresh
     #signal-desktop
+    wayscriber # Desktop Drawing
 
     ### EDITORS ###
     # CLI
