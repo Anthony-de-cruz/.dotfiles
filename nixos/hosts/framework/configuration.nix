@@ -182,6 +182,8 @@
     # AI
     opencode
     codex
+    # Debugging
+    gdb
     # Nix
     nixd
     # C/C++
@@ -211,6 +213,7 @@
     wofi # Launcher
     mako # Notification Daemon
     kitty # Terminal
+    ghostty
     lxqt.lxqt-policykit # Polkit GUI
     brightnessctl
 

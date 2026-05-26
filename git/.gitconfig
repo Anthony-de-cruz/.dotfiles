@@ -12,3 +12,5 @@
 	process = git-lfs filter-process
 [core]
 	autocrlf = input
+[credential]
+	helper = cache
