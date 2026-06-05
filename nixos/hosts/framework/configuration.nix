@@ -216,24 +216,25 @@
     ghostty
     lxqt.lxqt-policykit # Polkit GUI
     brightnessctl
+    adwaita-icon-theme # GTK symbolic icons
 
     ### DESKTOP APPS ###
     inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
-    ungoogled-chromium
-    obsidian # Note Taking
     nautilus # File Explorer
     loupe # Image Viewer
-    simple-scan # Document Scanner
+    showtime # Video Player
+    vlc # General Media Player
     evince # Document Viewer
     snapshot # Camera Viewer
+    simple-scan # Document Scanner
     gnome-calculator # Calculator
-    gimp
+    gimp # Image Editor
+    wayscriber # Desktop Drawing
+    obs-studio # Video Recorder
     spotify
     steam
     #discord
     #libreoffice-qt-fresh
-    #signal-desktop
-    wayscriber # Desktop Drawing
 
     ### EDITORS ###
     # CLI
@@ -241,13 +242,13 @@
     neovim
     tree-sitter
     # GUI
-    #vscode
     zed-editor
     #jetbrains.pycharm
     #jetbrains.datagrip
     jetbrains.rust-rover
     jetbrains.rider
     unityhub
+    obsidian # Markdown Editor
 
     ### VIRTUALISATION ###
     quickemu
