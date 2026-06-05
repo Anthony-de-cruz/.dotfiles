@@ -145,6 +145,9 @@
     XDG_RUNTIME_DIR = "/run/user/1000";
   };
 
+  # GNOME virtual fs. Enables trash locations for explorer.
+  services.gvfs.enable = true;
+
   ################
   ### PACKAGES ###
   ################
