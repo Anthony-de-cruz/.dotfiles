@@ -33,5 +33,13 @@
           ./hosts/framework/configuration.nix
         ];
       };
+      nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = { inherit inputs; }; # Pass input flakes down to all modules.
+        modules = [
+          inputs.stylix.nixosModules.stylix
+          ./hosts/desktop/configuration.nix
+        ];
+      };
     };
 }
