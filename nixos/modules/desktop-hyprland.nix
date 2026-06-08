@@ -17,11 +17,14 @@
     adwaita-icon-theme # GTK symbolic icons
 
     ### TUI APPS ###
-    wifitui
-    bluetui
+    wifitui # WIFI.
+    bluetui # Bluetooth.
+    btop # Performance.
+    lazygit # Git.
+    rmpc # MPD Client.
 
     ### DESKTOP APPS ###
-    inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
+    # GNOME
     nautilus # File Explorer
     loupe # Image Viewer
     showtime # Video Player
@@ -30,23 +33,15 @@
     snapshot # Camera Viewer
     simple-scan # Document Scanner
     gnome-calculator # Calculator
-    #gimp # Image Editor
-    #wayscriber # Desktop Drawing
+    # Other
+    inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
+    gimp # Image Editor
     #obs-studio # Video Recorder
+    #wayscriber # Desktop Drawing
     #spotify
     #steam
     #discord
     #libreoffice-qt-fresh
-
-    ### MUSIC ###
-    # mpd
-    # mpc
-    # rmpc
-
-    ### MEDIA CODECS ###
-    # ffmpeg
-    # flac
-    # libvorbis
   ];
 
   programs.hyprland.enable = true;
@@ -67,4 +62,32 @@
     font-awesome
     material-design-icons
   ];
+
+  # Enable GNOME virtual FS for nautilus.
+  services.gvfs.enable = true;
+
+  ####################
+  ### POLKIT / XDG ###
+  ####################
+
+  security.polkit.enable = true;
+
+  systemd.user.services.polkit-lxqt-agent = {
+    description = "LXQt Polkit Agent";
+    wantedBy = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.lxqt.lxqt-policykit}/bin/lxqt-policykit-agent";
+      Restart = "on-failure";
+    };
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gtk
+    ];
+  };
 }

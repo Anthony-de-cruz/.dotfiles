@@ -16,6 +16,7 @@
       ../../modules/common.nix
       ../../modules/user.nix
       ../../modules/desktop-hyprland.nix 
+      ../../modules/mpd.nix
     ];
 
   # This value determines the NixOS release from which the default
@@ -43,22 +44,23 @@
   ### NETWORKING ###
   ##################
 
-  networking.hostName = "desktop"; # Define your hostname.
-  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.hostName = "desktop";
+  networking.wireless.enable = true; 
   networking.networkmanager.enable = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  services.openssh.enable = true;
+
+  ################
+  ### PACKAGES ###
+  ################
+
   environment.systemPackages = with pkgs; [
-    vim
     neovim
     tree-sitter
     gcc
-    git
-    btop
     codex
     tmux
-    lazygit
+    fzf
   ];
 
   services.sunshine = {

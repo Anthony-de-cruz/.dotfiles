@@ -51,11 +51,7 @@
   # Enable writing to devices.
   services.udisks2.enable = true;
 
-  #############
-  ### AUDIO ###
-  #############
-
-  # Enable sound with pipewire.
+  # Audio
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -66,4 +62,13 @@
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
   };
+
+  ################
+  ### PACKAGES ###
+  ################
+
+  environment.systemPackages = with pkgs; [
+    vim
+    git
+  ];
 }
