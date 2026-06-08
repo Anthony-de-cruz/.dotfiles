@@ -31,7 +31,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
+zstyle ':omz:update' mode disabled  # disable automatic updates
 # zstyle ':omz:update' mode auto      # update automatically without asking
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
@@ -130,8 +130,8 @@ alias pf='echo "$(find . -type d -not -path "./.git/*" |
     fzf --layout=reverse --info=inline)"' # path-find
 
 # Init zoxide
-eval "$(zoxide init zsh)" # Init zoxide
-eval "$(direnv hook zsh)" # Hook direnv 
+#eval "$(zoxide init zsh)" # Init zoxide
+#eval "$(direnv hook zsh)" # Hook direnv 
 
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 
