@@ -27,15 +27,15 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/mapper/luks-fc3f1d52-85f2-448d-ad99-0f20c498eff1";
+    device = "/dev/mapper/luks-fc3f1d52-85f2-448d-ad99-0f20c498eff1"; # main
     fsType = "ext4";
   };
 
   boot.initrd.luks.devices."luks-fc3f1d52-85f2-448d-ad99-0f20c498eff1".device =
-    "/dev/disk/by-uuid/fc3f1d52-85f2-448d-ad99-0f20c498eff1";
+    "/dev/disk/by-uuid/fc3f1d52-85f2-448d-ad99-0f20c498eff1"; # main
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/6A58-03D3";
+    device = "/dev/disk/by-uuid/6A58-03D3"; # efi
     fsType = "vfat";
     options = [
       "fmask=0077"
