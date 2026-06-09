@@ -122,11 +122,11 @@ alias quit='exit'
 alias :q='exit'
 
 # Fuzzy find folder navigation
-alias ff='cd "$(find . -type d -not -path "./.git/*" | 
+alias ff='cd "$(find . \( -name .local -o -name .cache -o -name .git \) -prune -o -type d -print |
     fzf --layout=reverse --info=inline)"' # folder-find
-alias hf='cd "$(find ~ -type d -not -path "./.git/*" |
+alias hf='cd "$(find ~ \( -name .local -o -name .cache -o -name .git \) -prune -o -type d -print |
     fzf --layout=reverse --info=inline)"' # home-find
-alias pf='echo "$(find . -type d -not -path "./.git/*" |
+alias pf='echo "$(find . \( -name .local -o -name .cache -o -name .git \) -prune -o -type d -print |
     fzf --layout=reverse --info=inline)"' # path-find
 
 # Init zoxide
