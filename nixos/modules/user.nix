@@ -1,10 +1,9 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  ...
+}:
 
 {
-  ############
-  ### USER ###
-  ############
-
   programs.zsh.enable = true;
 
   # Set password with "passwd"

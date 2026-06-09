@@ -10,14 +10,13 @@
 }:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ../../modules/common.nix
-      ../../modules/user.nix
-      ../../modules/desktop-hyprland.nix 
-      ../../modules/mpd.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    ../../modules/common.nix
+    ../../modules/user.nix
+    ../../modules/desktop-hyprland.nix
+    ../../modules/mpd.nix
+  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -45,7 +44,7 @@
   ##################
 
   networking.hostName = "desktop";
-  networking.wireless.enable = true; 
+  networking.wireless.enable = true;
   networking.networkmanager.enable = true;
 
   services.openssh.enable = true;
@@ -58,6 +57,7 @@
     neovim
     tree-sitter
     gcc
+    nixd
     codex
     tmux
     fzf

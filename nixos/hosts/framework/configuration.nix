@@ -13,6 +13,8 @@
   imports = [
     ./hardware-configuration.nix
 	  ../../modules/common.nix
+	  ../../modules/user.nix
+	  ../../modules/mpd.nix
   ];
 
   # This value determines the NixOS release from which the default
@@ -43,36 +45,6 @@
   networking.hostName = "framework";
   networking.wireless.enable = true;
   networking.networkmanager.enable = true;
-
-  ################
-  ### SERVICES ###
-  ################
-
-  # Music Daemon
-  services.mpd = {
-    enable = true;
-    user = "anthonydecruz";
-    dataDir = "/home/anthonydecruz/.config/mpd";
-    startWhenNeeded = true;
-
-    settings = {
-      music_directory = "/home/anthonydecruz/Music";
-      playlist_directory = "/home/anthonydecruz/.config/mpd/playlists";
-      restore_paused = true;
-      audio_output = [
-        {
-          type = "pipewire";
-          name = "PipewireOutput";
-        }
-      ];
-    };
-  };
-
-  # As a system level service, MPD doesn't know the user level socket by default.
-  systemd.services.mpd.environment = {
-    # Update with your UID, it might change in multiuser systems.
-    XDG_RUNTIME_DIR = "/run/user/1000";
-  };
 
   # GNOME virtual fs. Enables trash locations for explorer.
   services.gvfs.enable = true;
@@ -185,16 +157,6 @@
     ### VIRTUALISATION ###
     quickemu
     spice
-
-    ### MUSIC ###
-    mpd
-    mpc
-    rmpc
-
-    ### MEDIA CODECS ###
-    ffmpeg
-    flac
-    libvorbis
   ];
 
   programs.nix-ld.enable = true;
@@ -203,22 +165,6 @@
   #############
   ### USERS ###
   #############
-
-  programs.zsh.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users."anthonydecruz" = {
-    isNormalUser = true;
-    description = "Anthony de Cruz";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "libvirtd"
-      "kvm"
-      "docker"
-    ];
-    shell = pkgs.zsh;
-  };
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };

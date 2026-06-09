@@ -1,13 +1,16 @@
-
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   environment.systemPackages = with pkgs; [
-    ### MUSIC ###
+    # MPD
     mpd
     mpc
 
-    ### MEDIA CODECS ###
+    # Media Codecs
     ffmpeg
     flac
     libvorbis
