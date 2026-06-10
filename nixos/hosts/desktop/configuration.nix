@@ -61,7 +61,20 @@
     codex
     tmux
     fzf
+
+    jetbrains.rust-rover
+    jetbrains.rider
+    unityhub
   ];
+
+  ##############
+  ### GAMING ###
+  ##############
+
+  hardware.graphics.enable = true;
+
+  programs.steam.enable = true;
+  programs.gamescope.enable = true;
 
   services.sunshine = {
     enable = true;

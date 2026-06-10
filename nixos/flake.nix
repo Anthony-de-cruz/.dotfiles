@@ -3,7 +3,7 @@
   inputs = {
     nixpkgs = {
       url = "github:nixos/nixpkgs?ref=nixos-unstable";
-      #url = "github:nixos/nixpkgs?ref=nixos-25.11";
+      #url = "github:nixos/nixpkgs?ref=nixos-26.05";
     };
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -11,6 +11,7 @@
     };
     stylix = {
       url = "github:nix-community/stylix";
+      #url = "github:nix-community/stylix?ref=release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zen-browser = {
