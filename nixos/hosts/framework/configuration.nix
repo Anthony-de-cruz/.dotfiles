@@ -14,6 +14,7 @@
     ./hardware-configuration.nix
 	  ../../modules/common.nix
 	  ../../modules/user.nix
+    ../../modules/desktop-hyprland.nix
 	  ../../modules/mpd.nix
   ];
 
@@ -46,15 +47,26 @@
   networking.wireless.enable = true;
   networking.networkmanager.enable = true;
 
-  # GNOME virtual fs. Enables trash locations for explorer.
-  services.gvfs.enable = true;
+  services.openssh = {
+    enable = true;
+    openFirewall = true;
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+      PermitRootLogin = "no";
+      AllowUsers = [ "anthonydecruz" ];
+      MaxAuthTries = 3;
+      PerSourcePenalties = "crash:3600s authfail:3600s max:86400s";
+    };
+  };
 
   ################
   ### PACKAGES ###
   ################
 
-  nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
+    nvtopPackages.intel
+
     ### CLI UTILS ###
     zsh
     tmux
@@ -108,38 +120,6 @@
     nodejs_22
     prettierd
 
-    ### DESKTOP ENVIRONMENT ###
-    hyprpaper # Wallpapers
-    hyprshot # Screenshots
-    hypridle # Idle Daemon
-    hyprlock # Lock Screen
-    waybar # Desktop Bar
-    wofi # Launcher
-    mako # Notification Daemon
-    kitty # Terminal
-    ghostty
-    lxqt.lxqt-policykit # Polkit GUI
-    brightnessctl
-    adwaita-icon-theme # GTK symbolic icons
-
-    ### DESKTOP APPS ###
-    inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
-    nautilus # File Explorer
-    loupe # Image Viewer
-    showtime # Video Player
-    vlc # General Media Player
-    evince # Document Viewer
-    snapshot # Camera Viewer
-    simple-scan # Document Scanner
-    gnome-calculator # Calculator
-    gimp # Image Editor
-    wayscriber # Desktop Drawing
-    obs-studio # Video Recorder
-    spotify
-    steam
-    #discord
-    #libreoffice-qt-fresh
-
     ### EDITORS ###
     # CLI
     vim
@@ -157,10 +137,23 @@
     ### VIRTUALISATION ###
     quickemu
     spice
+
+    moonlight-qt
   ];
 
-  programs.nix-ld.enable = true;
-  programs.direnv.enable = true;
+  hardware.graphics.enable = true;
+
+  # Rebind keys.
+  services.keyd = {
+    enable = true;
+    keyboards.default.settings = {
+      main = {
+        capslock = "esc";
+      };
+    };
+  };
+
+  #programs.direnv.enable = true;
 
   #############
   ### USERS ###
@@ -178,81 +171,11 @@
   ######################
 
   virtualisation.docker.enable = true;
+  users.extraGroups.docker.members = [ "anthonydecruz" ];
 
   virtualisation.libvirtd = {
     enable = true;
     allowedBridges = [ "br-5g" ]; # For a project.
-  };
-
-  ###########################
-  ### DESKTOP ENVIRONMENT ###
-  ###########################
-
-  programs.hyprland.enable = true;
-
-  # Stylix *may* require ld to link non native binaries.
-  stylix = {
-    enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-storm.yaml";
-    polarity = "dark";
-    targets.gtk.enable = true;
-  };
-
-  # Fonts
-  fonts.packages = with pkgs; [
-    nerd-fonts.meslo-lg
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.fira-code
-    font-awesome
-    material-design-icons
-  ];
-
-  # Allow hyprland to handle laptop lid switch.
-  services.logind = {
-    settings.Login = {
-      HandleLidSwitch = "ignore";
-      HandleLidSwitchDocked = "ignore";
-      HandleLidSwitchExternalPower = "ignore";
-    };
-  };
-
-  systemd.sleep.settings.Sleep = {
-    HibernateDelaySec = "30m";
-  };
-
-  # Rebind keys.
-  services.keyd = {
-    enable = true;
-    keyboards.default.settings = {
-      main = {
-        capslock = "esc";
-      };
-    };
-  };
-
-  ####################
-  ### POLKIT / XDG ###
-  ####################
-
-  security.polkit.enable = true;
-
-  systemd.user.services.polkit-lxqt-agent = {
-    description = "LXQt Polkit Agent";
-    wantedBy = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "${pkgs.lxqt.lxqt-policykit}/bin/lxqt-policykit-agent";
-      Restart = "on-failure";
-    };
-  };
-
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-hyprland
-      xdg-desktop-portal-gtk
-    ];
   };
 
   ##############

@@ -25,6 +25,7 @@
     bluetui # Bluetooth.
     btop # Performance.
     lazygit # Git.
+    lazydocker # Docker.
     rmpc # MPD Client.
 
     ### DESKTOP APPS ###
@@ -69,6 +70,19 @@
 
   # Enable GNOME virtual FS for nautilus.
   services.gvfs.enable = true;
+
+  # Allow hyprland to handle laptop lid switch.
+  services.logind = {
+    settings.Login = {
+      HandleLidSwitch = "ignore";
+      HandleLidSwitchDocked = "ignore";
+      HandleLidSwitchExternalPower = "ignore";
+    };
+  };
+
+  systemd.sleep.settings.Sleep = {
+    HibernateDelaySec = "30m";
+  };
 
   ####################
   ### POLKIT / XDG ###
