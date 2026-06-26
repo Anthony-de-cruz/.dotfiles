@@ -64,6 +64,7 @@
 
   environment.systemPackages = with pkgs; [
     nvtopPackages.amd
+    rocmPackages.amdsmi
 
     neovim
     tree-sitter
