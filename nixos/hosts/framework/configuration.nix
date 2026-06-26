@@ -141,8 +141,6 @@
     moonlight-qt
   ];
 
-  hardware.graphics.enable = true;
-
   # Rebind keys.
   services.keyd = {
     enable = true;
@@ -153,19 +151,6 @@
     };
   };
 
-  #programs.direnv.enable = true;
-
-  #############
-  ### USERS ###
-  #############
-
-  home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      "anthonydecruz" = import ./home.nix; # Pass args down to our modules.
-    };
-  };
-
   ######################
   ### VIRTUALISATION ###
   ######################
@@ -173,14 +158,13 @@
   virtualisation.docker.enable = true;
   users.extraGroups.docker.members = [ "anthonydecruz" ];
 
-  virtualisation.libvirtd = {
-    enable = true;
-    allowedBridges = [ "br-5g" ]; # For a project.
-  };
+  virtualisation.libvirtd.enable = true;
 
   ##############
   ### GAMING ###
   ##############
+
+  hardware.graphics.enable = true;
 
   programs.steam.enable = true;
   programs.gamescope.enable = true;
