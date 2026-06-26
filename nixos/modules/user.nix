@@ -12,6 +12,8 @@
     description = "Anthony de Cruz";
     extraGroups = [
       "networkmanager"
+      "render"
+      "video"
       "wheel"
     ];
     shell = pkgs.zsh;
