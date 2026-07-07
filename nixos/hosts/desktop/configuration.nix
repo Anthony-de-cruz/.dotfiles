@@ -65,18 +65,6 @@
   environment.systemPackages = with pkgs; [
     nvtopPackages.amd
     rocmPackages.amdsmi
-
-    neovim
-    tree-sitter
-    gcc
-    nixd
-    codex
-    tmux
-    fzf
-
-    jetbrains.rust-rover
-    jetbrains.rider
-    unityhub
   ];
 
   ##############

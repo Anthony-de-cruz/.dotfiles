@@ -15,6 +15,7 @@
 	  ../../modules/common.nix
 	  ../../modules/user.nix
     ../../modules/desktop-hyprland.nix
+	  ../../modules/dev.nix
 	  ../../modules/mpd.nix
   ];
 
@@ -37,7 +38,19 @@
     editor = false;
   };
 
-  boot.kernelModules = [ "tun" ]; # For networking.
+  ################
+  ### HARDWARE ###
+  ################
+
+  services.keyd = {
+    enable = true;
+    keyboards.default.settings = {
+      main = {
+        capslock = "esc";
+      };
+    };
+  };
+
 
   ##################
   ### NETWORKING ###
@@ -66,90 +79,7 @@
 
   environment.systemPackages = with pkgs; [
     nvtopPackages.intel
-
-    ### CLI UTILS ###
-    zsh
-    tmux
-    btop
-    fzf
-    yazi # File Explorer TUI
-    poppler # Yazi PDF Preview
-    jq # Yazi JSON Preview
-    ripgrep # Yazi File Search
-    fd # Yazi Directory Search
-    zoxide # Yazi Search History
-    fastfetch # Ofc
-
-    ### NETWORKING ###
-    wifitui
-    bluetui
-    nmap
-    wget
-    curl
-    tcpdump
-    nftables
-    conntrack-tools
-    dnsmasq
-
-    ### DEV TOOLS ###
-    # VCS
-    git
-    lazygit
-    # AI
-    opencode
-    codex
-    # Debugging
-    gdb
-    # Nix
-    nixd
-    # C/C++
-    gcc
-    gnumake
-    cmake
-    # Python
-    uv
-    ruff
-    python314
-    pyright
-    # Rust
-    rustup
-    # Lua
-    luajitPackages.lua-lsp
-    stylua
-    # JS
-    nodejs_22
-    prettierd
-
-    ### EDITORS ###
-    # CLI
-    vim
-    neovim
-    tree-sitter
-    # GUI
-    zed-editor
-    #jetbrains.pycharm
-    #jetbrains.datagrip
-    jetbrains.rust-rover
-    jetbrains.rider
-    unityhub
-    obsidian # Markdown Editor
-
-    ### VIRTUALISATION ###
-    quickemu
-    spice
-
-    moonlight-qt
   ];
-
-  # Rebind keys.
-  services.keyd = {
-    enable = true;
-    keyboards.default.settings = {
-      main = {
-        capslock = "esc";
-      };
-    };
-  };
 
   ######################
   ### VIRTUALISATION ###
