@@ -10,7 +10,7 @@ return {
 		local servers = {
 			"ruff",
 			"pyright",
-			-- "roslyn_ls",
+			"roslyn_ls",
 			-- "html",
 			-- "cssls",
 			"ts_ls",
