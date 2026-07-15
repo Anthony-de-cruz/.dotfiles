@@ -26,9 +26,10 @@ return {
                     hide_gitignored = true,
                     hide_by_name = {
                         ".github",
+                        ".git"
                         --"package-lock.json",
                     },
-                    never_show = { ".git" },
+                    --never_show = { ".git" },
                 },
             },
             window = {
