@@ -37,8 +37,6 @@
     editor = false;
   };
 
-  boot.kernelModules = [ "tun" ]; # For networking.
-
   ##################
   ### NETWORKING ###
   ##################
@@ -47,25 +45,26 @@
   networking.wireless.enable = true;
   networking.networkmanager.enable = true;
 
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    openFirewall = true;
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+      PermitRootLogin = "no";
+      AllowUsers = [ "anthonydecruz" ];
+      MaxAuthTries = 3;
+      PerSourcePenalties = "crash:3600s authfail:3600s max:86400s";
+    };
+  };
 
   ################
   ### PACKAGES ###
   ################
 
   environment.systemPackages = with pkgs; [
-    neovim
-    tree-sitter
-    gcc
-    nixd
-    codex
-    tmux
-    fzf
-
-    rustup
-    jetbrains.rust-rover
-    jetbrains.rider
-    unityhub
+    nvtopPackages.amd
+    rocmPackages.amdsmi
   ];
 
   ##############
