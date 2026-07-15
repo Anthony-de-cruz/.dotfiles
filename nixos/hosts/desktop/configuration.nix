@@ -62,6 +62,7 @@
     tmux
     fzf
 
+    rustup
     jetbrains.rust-rover
     jetbrains.rider
     unityhub

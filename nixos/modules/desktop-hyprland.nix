@@ -48,7 +48,10 @@
     #libreoffice-qt-fresh
   ];
 
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+  };
 
   programs.nix-ld.enable = true;
   stylix = {
