@@ -7,7 +7,7 @@
   environment.systemPackages = with pkgs; [
     ### GUI Editors ###
     zed-editor # Editor.
-    # jetbrains.rust-rover
+    jetbrains.rust-rover # Rust Editor..
     jetbrains.rider # .NET Editor.
     unityhub # Unity Editor.
     obsidian # Markdown Editor.
