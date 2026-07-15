@@ -15,6 +15,7 @@
     ../../modules/common.nix
     ../../modules/user.nix
     ../../modules/desktop-hyprland.nix
+    ../../modules/dev.nix
     ../../modules/mpd.nix
   ];
 
