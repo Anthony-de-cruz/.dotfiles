@@ -33,6 +33,7 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.timeout = 10; # Longer time since external monitor is slow.
   boot.loader.systemd-boot = {
     consoleMode = "auto";
     editor = false;
