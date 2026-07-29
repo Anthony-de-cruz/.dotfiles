@@ -45,6 +45,8 @@ return {
         })
 
         -- setup must be called before loading
-        require("onedark").load()
+        --require("onedark").load()
+
+        vim.cmd("colorscheme onedark")
     end,
 }
