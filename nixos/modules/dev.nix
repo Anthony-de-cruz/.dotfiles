@@ -50,8 +50,9 @@
     # Lua
     luajitPackages.lua-lsp
     stylua
-    # Javascript
+    # JS/HTML/CSS
     nodejs_22
+    prettierd
 
     ### Misc ###
     curl
