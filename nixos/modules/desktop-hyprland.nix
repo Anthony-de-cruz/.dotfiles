@@ -17,7 +17,8 @@
     kitty # Terminal
     #ghostty
     lxqt.lxqt-policykit # Polkit GUI
-    brightnessctl
+    brightnessctl # Display Brightness Control
+    playerctl # Media Player Control
     adwaita-icon-theme # GTK symbolic icons
 
     ### TUI APPS ###
