@@ -4,7 +4,7 @@ if process then
 	process:close()
 end
 
- --- FRAMEWORK CONFIG ---
+--- FRAMEWORK CONFIG ---
 if hostname == "framework" then
 	-- Ensure that lid switch is not being consumed by something like logind.
 	hl.bind("switch:Lid Switch", hl.dsp.exec_cmd("~/.config/hypr/lidswitch.sh"), { locked = true })
@@ -56,7 +56,7 @@ if hostname == "framework" then
 	hl.workspace_rule({ workspace = "10", monitor = "HDMI-A-1" })
 
 --- DEFAULT + DESKTOP CONFIG ---
-else 
+else
 	----------------
 	--- MONITORS ---
 	----------------
@@ -90,6 +90,4 @@ else
 	hl.workspace_rule({ workspace = "8", monitor = "DP-1" })
 	hl.workspace_rule({ workspace = "9", monitor = "DP-1" })
 	hl.workspace_rule({ workspace = "10", monitor = "HDMI-A-1" })
-    
 end
-

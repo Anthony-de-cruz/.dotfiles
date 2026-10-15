@@ -1,8 +1,19 @@
 local exec = require("exec")
 
--------------------
----- KEY BINDS ----
--------------------
+----------------
+--- KEYBOARD ---
+----------------
+-- https://wiki.hypr.land/configuring/core/binds/keyboard-layouts/
+
+hl.config({
+	input = {
+		kb_layout = "gb",
+	},
+})
+
+-----------------
+--- KEY BINDS ---
+-----------------
 -- https://wiki.hypr.land/Configuring/Basics/Binds/
 
 -- Window Control
@@ -27,9 +38,9 @@ hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
 -- Switch workspaces with mainMod + [0-9]
 -- Move the active window with mainMod + SHIFT + [0-9]
 for i = 1, 10 do
-    local key = i % 10 -- Workspace 10 uses the 0 key
-    hl.bind("SUPER + " .. key, hl.dsp.focus({ workspace = i }))
-    hl.bind("SUPER + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
+	local key = i % 10 -- Workspace 10 uses the 0 key
+	hl.bind("SUPER + " .. key, hl.dsp.focus({ workspace = i }))
+	hl.bind("SUPER + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
 
 -- Applications
@@ -46,10 +57,21 @@ hl.bind("SUPER + D", hl.dsp.exec_cmd("wayscriber --active"), { locked = true })
 hl.bind("SUPER + SHIFT + D", hl.dsp.exec_cmd("wayscriber --active --freeze"), { locked = true })
 
 -- Multimedia Control
--- todo: pipewire control
+hl.bind(
+	"XF86AudioRaiseVolume",
+	hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
+	{ locked = true, repeating = true }
+)
+hl.bind(
+	"XF86AudioLowerVolume",
+	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
+	{ locked = true, repeating = true }
+)
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true })
 
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
 
--- todo: display brightness control
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 5%+"), { locked = true })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 5%-"), { locked = true })
