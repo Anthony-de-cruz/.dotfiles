@@ -10,6 +10,9 @@
     mpd
     mpc
 
+    # Music Labelling
+    beets
+
     # Media Codecs
     ffmpeg
     flac

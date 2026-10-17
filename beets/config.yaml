@@ -1,0 +1,30 @@
+directory: ~/Music/Library Albums Archival
+library: ~/Music/Library Albums Archival/.db
+import:
+    copy: yes # Copy files to new location.
+
+musicbrainz:
+    search_limit: 5
+    data_source_mismatch_penalty: 0.5
+    search_query_ascii: no
+    genres: no
+    genres_tag: genre
+    external_ids:
+        discogs: no
+        bandcamp: no
+        spotify: no
+        deezer: no
+        tidal: no
+    extra_tags: []
+    aliases_as_credits: no
+
+
+disabled_plugins: []
+plugins: [convert, fetchart]
+
+# Run: beet convert -a
+convert:
+    dest: ~/Music/Library Albums Distribution
+    format: mp3
+    opts: -aq 0  # Targets V0 VBR (highest quality variable bitrate).
+    threads: 12 # Will hammer CPU.

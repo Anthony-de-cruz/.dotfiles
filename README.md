@@ -2,12 +2,6 @@
 
 Some of my .dotfile setup
 
-### GIT
-
-```sh
-mkdir ~/.config/git && ln -s ~/.dotfiles/git/.gitconfig ~/.config/git/config
-```
-
 ### ZSH
 
 Overwrite onfig
@@ -40,18 +34,6 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 exec zsh
 ```
 
-### NVIM
-
-```sh
-ln -s ~/.dotfiles/nvim ~/.config
-```
-
-### IDEAVIM
-
-```sh
-ln -s ~/.dotfiles/ideavim/.ideavimrc ~/.ideavimrc
-```
-
 ### TMUX
 
 ```sh
@@ -63,56 +45,23 @@ ln -s ~/.dotfiles/tmux/onedark.tmux ~/.config/tmux/onedark.tmux
 
 In tmux, run: `<leader> I`
 
-### Zellij
+### Other
 
 ```sh
-ln -s ~/.dotfiles/zellij/ ~/.config
+ln -s ~/.dotfiles/waybar ~/.config # Waybar
+ln -s ~/.dotfiles/hypr ~/.config # Hyprland
+
+ln -s ~/.dotfiles/kitty ~/.config # Kitty
+ln -s ~/.dotfiles/zed ~/.config # Zed
+ln -s ~/.dotfiles/spicetify ~/.config # Spicetify
+
+ln -s ~/.dotfiles/ideavim/.ideavimrc ~/.ideavimrc # Ideavim
+
+mkdir ~/.config/git && ln -s ~/.dotfiles/git/.gitconfig ~/.config/git/config # Git
+ln -s ~/.dotfiles/nvim ~/.config # Nvim
+ln -s ~/.dotfiles/zellij/ ~/.config # Zellij
+ln -s ~/.dotfiles/yazi ~/.config # Yazi
+ln -s ~/.dotfiles/bat ~/.config # Bat
+ln -s ~/.dotfiles/rmpc ~/.config # Rmpc
+ln -s ~/.dotfiles/beets/ ~/.config # Beets
 ```
-
-### Spicetify
-
-```sh
-ln -s ~/.dotfiles/spicetify ~/.config
-```
-
-### Kitty
-
-```sh
-ln -s ~/.dotfiles/kitty ~/.config
-```
-
-### Hypr
-
-```sh
-ln -s ~/.dotfiles/hypr ~/.config
-```
-
-### Waybar
-
-```sh
-ln -s ~/.dotfiles/waybar ~/.config
-```
-
-### Yazi
-
-```sh
-ln -s ~/.dotfiles/yazi ~/.config
-```
-
-### Bat
-
-```sh
-ln -s ~/.dotfiles/bat ~/.config
-```
-
-### Rmpc
-
-```sh
-ln -s ~/.dotfiles/rmpc ~/.config
-```
-
-### Zed
-```sh
-ln -s ~/.dotfiles/zed ~/.config
-```
-
