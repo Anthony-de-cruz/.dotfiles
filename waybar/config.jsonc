@@ -146,7 +146,7 @@
   "network": {
     // "interface": "wlp2*", // (Optional) To force the use of this interface
     //"format-wifi": "{essid} {signaldBm}dBm/{signalStrength}% ",
-    "format-wifi": "", // network mod's signalStrength % calculation is bad.
+    "format-wifi": " ", // network mod's signalStrength % calculation is bad.
     "format-ethernet": "",
     "tooltip-format": "{ipaddr}/{cidr} - {ifname} - {gwaddr} ",
     "format-linked": "{ifname} (No IP) ",
