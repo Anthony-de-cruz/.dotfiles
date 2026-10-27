@@ -52,9 +52,9 @@ hl.config({
 	},
 })
 
-----------------
+------------------
 --- ANIMATIONS ---
-----------------
+------------------
 
 hl.curve("easeOutQuint", { type = "bezier", points = { { 0.23, 1 }, { 0.32, 1 } } })
 hl.curve("easeInOutCubic", { type = "bezier", points = { { 0.65, 0.05 }, { 0.36, 1 } } })
@@ -78,3 +78,14 @@ hl.animation({ leaf = "fadeLayersOut", enabled = true, speed = 1.39, bezier = "a
 hl.animation({ leaf = "workspaces", enabled = true, speed = 1.94, bezier = "almostLinear", style = "fade" })
 hl.animation({ leaf = "workspacesIn", enabled = true, speed = 1.21, bezier = "almostLinear", style = "fade" })
 hl.animation({ leaf = "workspacesOut", enabled = true, speed = 1.94, bezier = "almostLinear", style = "fade" })
+
+--------------------
+--- WINDOW RULES ---
+--------------------
+
+hl.window_rule({
+    match = { class = "desktop-util" },
+    float = true,
+    center = true,
+    size = { "monitor_w * 0.8", "monitor_h * 0.8" },
+})
