@@ -51,16 +51,27 @@
   # Enable writing to devices.
   services.udisks2.enable = true;
 
-  # Audio
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
+  # Power management for connected devices.
+  services.upower.enable = true;
+
+  # Audio pipeline.
+  security.rtkit.enable = true; # Allow realtime audio scheduling.
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+    wireplumber.extraConfig."10-bluez" = {
+      "monitor.bluez.properties" = {
+        # SubBand Codec eXtended Quality -
+        #   Enable uni-directional A2DP codec. Should be higher quality.
+        "bluez5.enable-sbc-xq" = true;
+        # Modified SubBand Coding -
+        #   Enable bi-directional codec. Should be better than the
+        #   HandsFreeProfile and HeadsetProfile codecs.
+        "bluez5.enable-msbc" = true; 
+      };
+    };
   };
 
   ################
