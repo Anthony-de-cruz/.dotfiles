@@ -28,7 +28,6 @@
     zoxide # Yazi Search History.
 
     ### AI Tools ###
-    opencode
     codex
 
     ### Languages ###
