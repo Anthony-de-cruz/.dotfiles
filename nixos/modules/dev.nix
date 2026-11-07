@@ -53,6 +53,8 @@
     # JS/HTML/CSS
     nodejs_22
     prettierd
+    # Qt/QML
+    kdePackages.qtdeclarative
 
     ### Misc ###
     curl

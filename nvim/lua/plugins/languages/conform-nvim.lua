@@ -23,6 +23,7 @@ return {
 				css = { "prettierd", "prettier", stop_after_first = true },
 				scss = { "prettierd", "prettier", stop_after_first = true },
 				markdown = { "prettierd", "prettier", stop_after_first = true },
+                qml = { "qmlformat" },
 			},
 			--format_on_save = {
 			--	-- These options will be passed to conform.format()

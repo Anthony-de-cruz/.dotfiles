@@ -21,6 +21,8 @@
     playerctl # Media Player Control
     adwaita-icon-theme # GTK symbolic icons
 
+    quickshell
+
     ### TUI APPS ###
     wifitui # WIFI.
     bluetui # Bluetooth.
