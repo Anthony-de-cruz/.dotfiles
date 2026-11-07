@@ -38,6 +38,7 @@
         inherit system;
         specialArgs = { inherit inputs; }; # Pass input flakes down to all modules.
         modules = [
+          inputs.home-manager.nixosModules.default
           inputs.stylix.nixosModules.stylix
           ./hosts/desktop/configuration.nix
         ];
