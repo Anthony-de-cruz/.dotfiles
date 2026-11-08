@@ -33,12 +33,17 @@
   ############
 
   boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.canTouchEfiVariables = true; # Allow nixos to update boot menu.
   boot.loader.timeout = 25; # Longer time since external monitor is slow.
   boot.loader.systemd-boot = {
     consoleMode = "auto";
     editor = false;
   };
+
+  # boot.plymouth = {
+  #   enable = true;
+  #   theme = "spinner";
+  # };
 
   ##################
   ### NETWORKING ###

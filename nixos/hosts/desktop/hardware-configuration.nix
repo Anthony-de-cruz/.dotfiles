@@ -22,8 +22,12 @@
     "usb_storage"
     "sd_mod"
   ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.initrd.kernelModules = [
+    "amdgpu" # Provide gpu to Plymouth.
+  ];
+  boot.kernelModules = [
+    "kvm-amd" # Enable virtualisation.
+  ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
