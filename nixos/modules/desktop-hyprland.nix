@@ -57,14 +57,6 @@
     withUWSM = true;
   };
 
-  programs.nix-ld.enable = true;
-  stylix = {
-    enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-storm.yaml";
-    polarity = "dark";
-    targets.gtk.enable = true;
-  };
-
   # Fonts
   fonts.packages = with pkgs; [
     nerd-fonts.meslo-lg
